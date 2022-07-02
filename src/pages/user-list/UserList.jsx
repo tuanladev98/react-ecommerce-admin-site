@@ -1,12 +1,13 @@
-import './productList.css';
+import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { DataGrid } from '@material-ui/data-grid';
 import { DeleteOutline } from '@material-ui/icons';
-import { productRows } from '../../dummyData';
-import { Link } from 'react-router-dom';
-import { useState } from 'react';
 
-export default function ProductList() {
-  const [data, setData] = useState(productRows);
+import './UserList.css';
+import { userRows } from '../../dummyData';
+
+export default function UserList() {
+  const [data, setData] = useState(userRows);
 
   const handleDelete = (id) => {
     setData(data.filter((item) => item.id !== id));
@@ -15,27 +16,27 @@ export default function ProductList() {
   const columns = [
     { field: 'id', headerName: 'ID', width: 90 },
     {
-      field: 'product',
-      headerName: 'Product',
+      field: 'user',
+      headerName: 'User',
       width: 200,
       renderCell: (params) => {
         return (
-          <div className="productListItem">
-            <img className="productListImg" src={params.row.img} alt="" />
-            {params.row.name}
+          <div className="userListUser">
+            <img className="userListImg" src={params.row.avatar} alt="" />
+            {params.row.username}
           </div>
         );
       },
     },
-    { field: 'stock', headerName: 'Stock', width: 200 },
+    { field: 'email', headerName: 'Email', width: 200 },
     {
       field: 'status',
       headerName: 'Status',
       width: 120,
     },
     {
-      field: 'price',
-      headerName: 'Price',
+      field: 'transaction',
+      headerName: 'Transaction Volume',
       width: 160,
     },
     {
@@ -45,11 +46,11 @@ export default function ProductList() {
       renderCell: (params) => {
         return (
           <>
-            <Link to={'/product/' + params.row.id}>
-              <button className="productListEdit">Edit</button>
+            <Link to={'/user/' + params.row.id}>
+              <button className="userListEdit">Edit</button>
             </Link>
             <DeleteOutline
-              className="productListDelete"
+              className="userListDelete"
               onClick={() => handleDelete(params.row.id)}
             />
           </>
@@ -59,7 +60,7 @@ export default function ProductList() {
   ];
 
   return (
-    <div className="productList">
+    <div className="userList">
       <DataGrid
         rows={data}
         disableSelectionOnClick

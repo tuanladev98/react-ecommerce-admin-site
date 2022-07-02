@@ -4,20 +4,20 @@ import {
   Route,
   Redirect,
 } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 import './App.css';
 
 import Home from './pages/home/Home';
-import UserList from './pages/userList/UserList';
+import UserList from './pages/user-list/UserList';
 import User from './pages/user/User';
-import NewUser from './pages/newUser/NewUser';
-import ProductList from './pages/productList/ProductList';
+import NewUser from './pages/new-user/NewUser';
+import ProductList from './pages/product-list/ProductList';
 import Product from './pages/product/Product';
-import NewProduct from './pages/newProduct/NewProduct';
+import NewProduct from './pages/new-product/NewProduct';
 import Login from './pages/login/Login';
-import Sidebar from './components/sidebar/Sidebar';
-import Topbar from './components/topbar/Topbar';
-import { useSelector } from 'react-redux';
+import SideBar from './components/side-bar/SideBar';
+import Topbar from './components/top-bar/TopBar';
 
 function App() {
   const user = useSelector((state) => state.user.currentUser);
@@ -34,7 +34,7 @@ function App() {
           <>
             <Topbar />
             <div className="container">
-              <Sidebar />
+              <SideBar />
               <Route exact path="/">
                 <Home />
               </Route>

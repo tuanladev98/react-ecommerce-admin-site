@@ -1,8 +1,9 @@
 import React from 'react';
-import './topbar.css';
 import { NotificationsNone, Language, Settings } from '@material-ui/icons';
 
-export default function Topbar() {
+import './TopBar.css';
+
+export default function TopBar() {
   return (
     <div className="topbar">
       <div className="topbarWrapper">

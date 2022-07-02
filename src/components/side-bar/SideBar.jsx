@@ -1,4 +1,3 @@
-import './sidebar.css';
 import {
   LineStyle,
   Timeline,
@@ -15,7 +14,9 @@ import {
 } from '@material-ui/icons';
 import { Link } from 'react-router-dom';
 
-export default function Sidebar() {
+import './SideBar.css';
+
+export default function SideBar() {
   return (
     <div className="sidebar">
       <div className="sidebarWrapper">

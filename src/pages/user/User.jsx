@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import {
   CalendarToday,
   LocationSearching,
@@ -6,8 +7,8 @@ import {
   PhoneAndroid,
   Publish,
 } from '@material-ui/icons';
-import { Link } from 'react-router-dom';
-import './user.css';
+
+import './User.css';
 
 export default function User() {
   return (

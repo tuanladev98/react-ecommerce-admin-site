@@ -1,5 +1,6 @@
-import './featuredInfo.css';
 import { ArrowDownward, ArrowUpward } from '@material-ui/icons';
+
+import './FeaturedInfo.css';
 
 export default function FeaturedInfo() {
   return (

@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import './login.css';
+import './Login.css';
 import authApis from '../../api/auth.api';
 import { loginFailure, loginStart, loginSuccess } from '../../redux/user_slice';
 

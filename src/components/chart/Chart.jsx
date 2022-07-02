@@ -1,4 +1,3 @@
-import './chart.css';
 import {
   LineChart,
   Line,
@@ -7,6 +6,8 @@ import {
   Tooltip,
   ResponsiveContainer,
 } from 'recharts';
+
+import './Chart.css';
 
 export default function Chart({ title, data, dataKey, grid }) {
   return (

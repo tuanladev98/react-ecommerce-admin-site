@@ -1,4 +1,4 @@
-import './newProduct.css';
+import './NewProduct.css';
 
 export default function NewProduct() {
   return (

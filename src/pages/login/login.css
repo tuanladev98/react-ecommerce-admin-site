@@ -1,0 +1,55 @@
+.loginContainer {
+  width: 100vw;
+  height: 100vh;
+  background: linear-gradient(
+      rgba(255, 255, 255, 0.5),
+      rgba(255, 255, 255, 0.5)
+    ),
+    url('https://images.pexels.com/photos/847371/pexels-photo-847371.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1')
+      center;
+  background-size: cover;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.loginFormContainer {
+  width: 25%;
+  padding: 20px;
+  background-color: white;
+}
+
+.loginForm {
+  display: flex;
+  flex-direction: column;
+}
+
+.inputCredential {
+  flex: 1;
+  min-width: 40%;
+  margin: 10px 0px;
+  padding: 10px;
+}
+
+.buttonContainer {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 10px 0px;
+}
+
+.buttonLogin {
+  width: 40%;
+  border: none;
+  padding: 15px 20px;
+  background-color: teal;
+  color: white;
+  cursor: pointer;
+}
+
+.buttonLogin:disabled {
+  background-color: lightgray;
+  color: white;
+  cursor: not-allowed;
+}

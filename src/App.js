@@ -17,7 +17,7 @@ import Product from './pages/product/Product';
 import NewProduct from './pages/new-product/NewProduct';
 import Login from './pages/login/Login';
 import SideBar from './components/side-bar/SideBar';
-import Topbar from './components/top-bar/TopBar';
+import TopBar from './components/top-bar/TopBar';
 
 function App() {
   const user = useSelector((state) => state.user.currentUser);
@@ -32,7 +32,7 @@ function App() {
           <Redirect to="/login" />
         ) : (
           <>
-            <Topbar />
+            <TopBar />
             <div className="container">
               <SideBar />
               <Route exact path="/">

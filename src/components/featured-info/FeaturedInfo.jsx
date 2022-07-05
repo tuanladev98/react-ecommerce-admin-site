@@ -1,10 +1,9 @@
-import { useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { ArrowDownward, ArrowUpward } from '@material-ui/icons';
 
 import './FeaturedInfo.css';
 import numberWithCommas from '../../utils/numberWithCommas';
 import statsApis from '../../api/stats.api';
-import { useState } from 'react';
 
 export default function FeaturedInfo() {
   const [transactions, setTransactions] = useState(null);
@@ -32,46 +31,84 @@ export default function FeaturedInfo() {
     <div className="featured">
       <div className="featuredItem">
         <span className="featuredTitle">Transactions</span>
-        <div className="featuredMoneyContainer">
-          <span className="featuredMoney">{transactions.currentMonth}</span>
-          <span className="featuredMoneyRate">
-            {transactions.currentMonth > transactions.lastMonth ? (
-              <ArrowUpward className="featuredIcon" />
-            ) : (
-              <ArrowDownward className="featuredIcon negative" />
-            )}
-          </span>
-        </div>
+        {transactions && (
+          <div className="featuredMoneyContainer">
+            <span className="featuredMoney">{transactions.currentMonth}</span>
+            <span className="featuredMoneyRate">
+              {transactions.currentMonth > transactions.lastMonth ? (
+                <>
+                  +{transactions.currentMonth - transactions.lastMonth}{' '}
+                  <ArrowUpward className="featuredIcon" />
+                </>
+              ) : (
+                <>
+                  {transactions.currentMonth - transactions.lastMonth}{' '}
+                  <ArrowDownward className="featuredIcon negative" />
+                </>
+              )}
+            </span>
+          </div>
+        )}
         <span className="featuredSub">Compared to last month</span>
       </div>
+
       <div className="featuredItem">
         <span className="featuredTitle">Quantity Sold</span>
-        <div className="featuredMoneyContainer">
-          <span className="featuredMoney">{quantitySold.currentMonth}</span>
-          <span className="featuredMoneyRate">
-            {quantitySold.currentMonth > quantitySold.lastMonth ? (
-              <ArrowUpward className="featuredIcon" />
-            ) : (
-              <ArrowDownward className="featuredIcon negative" />
-            )}
-          </span>
-        </div>
+        {quantitySold && (
+          <div className="featuredMoneyContainer">
+            <span className="featuredMoney">{quantitySold.currentMonth}</span>
+            <span className="featuredMoneyRate">
+              {quantitySold.currentMonth > quantitySold.lastMonth ? (
+                <>
+                  +{quantitySold.currentMonth - quantitySold.lastMonth}{' '}
+                  <ArrowUpward className="featuredIcon" />
+                </>
+              ) : (
+                <>
+                  {quantitySold.currentMonth - quantitySold.lastMonth}{' '}
+                  <ArrowDownward className="featuredIcon negative" />
+                </>
+              )}
+            </span>
+          </div>
+        )}
         <span className="featuredSub">Compared to last month</span>
       </div>
+
       <div className="featuredItem">
-        <span className="featuredTitle">IncomeI</span>
-        <div className="featuredMoneyContainer">
-          <span className="featuredMoney">
-            {numberWithCommas(income.currentMonth)} ₫
-          </span>
-          <span className="featuredMoneyRate">
-            {income.currentMonth > income.lastMonth ? (
-              <ArrowUpward className="featuredIcon" />
-            ) : (
-              <ArrowDownward className="featuredIcon negative" />
-            )}
-          </span>
-        </div>
+        <span className="featuredTitle">Income</span>
+        {income && (
+          <div className="featuredMoneyContainer">
+            <span className="featuredMoney">
+              {numberWithCommas(income.currentMonth)}₫
+            </span>
+            <span className="featuredMoneyRate">
+              {income.currentMonth > income.lastMonth ? (
+                <>
+                  %
+                  {Math.round(
+                    ((income.currentMonth - income.lastMonth) /
+                      income.lastMonth) *
+                      100 *
+                      100
+                  ) / 100}{' '}
+                  <ArrowUpward className="featuredIcon" />
+                </>
+              ) : (
+                <>
+                  %
+                  {Math.round(
+                    ((income.lastMonth - income.currentMonth) /
+                      income.lastMonth) *
+                      100 *
+                      100
+                  ) / 100}{' '}
+                  <ArrowDownward className="featuredIcon negative" />
+                </>
+              )}
+            </span>
+          </div>
+        )}
         <span className="featuredSub">Compared to last month</span>
       </div>
     </div>

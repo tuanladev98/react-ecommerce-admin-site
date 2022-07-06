@@ -7,6 +7,12 @@ const statsApis = {
     return result;
   },
 
+  getChartCustomerAnalytics: () => {
+    const result = createPrivateRequest.get('/stats/customer-analytics');
+
+    return result;
+  },
+
   getListNewestCustomer: () => {
     const result = createPrivateRequest.get('/stats/list-newest-customer');
 

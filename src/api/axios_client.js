@@ -10,19 +10,18 @@ export const createPublicRequest = () => {
 };
 
 export const createPrivateRequest = () => {
-  const CURRENT_USER = JSON.parse(
-    !localStorage.getItem('persist:root')
-      ? null
-      : localStorage.getItem('persist:root')
-  )?.currentUser;
+  const TOKEN = JSON.parse(localStorage.getItem('currentAdmin'))?.accessToken;
+
+  if (!TOKEN) {
+    localStorage.clear();
+    window.location.href = '/login';
+  }
 
   return axios.create({
     baseURL: BASE_URL,
     headers: {
       'Content-Type': 'application/json',
-      'x-access-token': !CURRENT_USER
-        ? null
-        : JSON.parse(CURRENT_USER)?.accessToken,
+      'x-access-token': TOKEN,
     },
   });
 };

@@ -33,7 +33,13 @@ const Login = () => {
         dispatch(loginStart());
         try {
           const loginResult = await authApis.login(email, password);
-          dispatch(loginSuccess(loginResult.data));
+          if (loginResult.data.userInfo.role !== 'ADMIN') {
+            alert('You are not admin!');
+            dispatch(loginFailure());
+          } else {
+            dispatch(loginSuccess(loginResult.data));
+            window.location.href = '/';
+          }
         } catch (error) {
           const { statusCode, message } = error.response.data;
           if (statusCode < 500) setLoginErrorMessage(message);

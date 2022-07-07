@@ -4,7 +4,6 @@ import {
   Route,
   Redirect,
 } from 'react-router-dom';
-import { useSelector } from 'react-redux';
 
 import './App.css';
 
@@ -20,15 +19,15 @@ import SideBar from './components/side-bar/SideBar';
 import TopBar from './components/top-bar/TopBar';
 
 function App() {
-  const user = useSelector((state) => state.user.currentUser);
-
-  const isAdmin = user && user.userInfo.role === 'ADMIN';
+  const CURRENT_ADMIN = JSON.parse(localStorage.getItem('currentAdmin'));
 
   return (
     <Router>
       <Switch>
-        <Route path="/login">{isAdmin ? <Redirect to="/" /> : <Login />}</Route>
-        {!isAdmin ? (
+        <Route path="/login">
+          {CURRENT_ADMIN ? <Redirect to="/" /> : <Login />}
+        </Route>
+        {!CURRENT_ADMIN ? (
           <Redirect to="/login" />
         ) : (
           <>

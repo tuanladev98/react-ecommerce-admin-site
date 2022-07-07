@@ -35,7 +35,7 @@ export default function WidgetSm() {
                 <span className="widgetSmUserTitle">{customer.email}</span>
               </div>
               <div>
-                {customer.role === 'MALE' ? (
+                {customer.gender === 'MALE' ? (
                   <span>Male</span>
                 ) : (
                   <span>Female</span>

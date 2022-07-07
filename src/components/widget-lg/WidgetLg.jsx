@@ -46,7 +46,7 @@ export default function WidgetLg() {
               </td>
               <td className="widgetLgDate">{transaction.createdAt}</td>
               <td className="widgetLgAmount">
-                {numberWithCommas(transaction.amount)}
+                {numberWithCommas(transaction.amount)}₫
               </td>
               <td className="widgetLgStatus">
                 <Button type="Approved" />

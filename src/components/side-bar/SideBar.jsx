@@ -6,11 +6,11 @@ import {
   Storefront,
   AttachMoney,
   BarChart,
-  MailOutline,
-  DynamicFeed,
-  ChatBubbleOutline,
-  WorkOutline,
-  Report,
+  // MailOutline,
+  // DynamicFeed,
+  // ChatBubbleOutline,
+  // WorkOutline,
+  // Report,
 } from '@material-ui/icons';
 import { Link } from 'react-router-dom';
 
@@ -64,7 +64,7 @@ export default function SideBar() {
             </li>
           </ul>
         </div>
-        <div className="sidebarMenu">
+        {/* <div className="sidebarMenu">
           <h3 className="sidebarTitle">Notifications</h3>
           <ul className="sidebarList">
             <li className="sidebarListItem">
@@ -97,7 +97,7 @@ export default function SideBar() {
               Reports
             </li>
           </ul>
-        </div>
+        </div> */}
       </div>
     </div>
   );

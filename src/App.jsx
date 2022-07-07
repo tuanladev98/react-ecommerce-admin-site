@@ -37,7 +37,7 @@ function App() {
               <Route exact path="/">
                 <Home />
               </Route>
-              <Route path="/users">
+              <Route exact path="/user">
                 <UserList />
               </Route>
               <Route path="/user/:userId">
@@ -46,7 +46,7 @@ function App() {
               <Route path="/new-user">
                 <NewUser />
               </Route>
-              <Route path="/products">
+              <Route exact path="/product">
                 <ProductList />
               </Route>
               <Route path="/product/:productId">

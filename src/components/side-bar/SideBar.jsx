@@ -1,7 +1,7 @@
 import {
   LineStyle,
   Timeline,
-  TrendingUp,
+  // TrendingUp,
   PermIdentity,
   Storefront,
   AttachMoney,
@@ -33,22 +33,22 @@ export default function SideBar() {
               <Timeline className="sidebarIcon" />
               Analytics
             </li>
-            <li className="sidebarListItem">
+            {/* <li className="sidebarListItem">
               <TrendingUp className="sidebarIcon" />
               Sales
-            </li>
+            </li> */}
           </ul>
         </div>
         <div className="sidebarMenu">
           <h3 className="sidebarTitle">Quick Menu</h3>
           <ul className="sidebarList">
-            <Link to="/users" className="link">
+            <Link to="/user" className="link">
               <li className="sidebarListItem">
                 <PermIdentity className="sidebarIcon" />
                 Users
               </li>
             </Link>
-            <Link to="/products" className="link">
+            <Link to="/product" className="link">
               <li className="sidebarListItem">
                 <Storefront className="sidebarIcon" />
                 Products

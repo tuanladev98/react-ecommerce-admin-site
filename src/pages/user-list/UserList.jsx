@@ -1,13 +1,28 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { DataGrid } from '@material-ui/data-grid';
 import { DeleteOutline } from '@material-ui/icons';
 
 import './UserList.css';
+
 import { userRows } from '../../dummyData';
+import userApis from '../../api/user.api';
 
 export default function UserList() {
   const [data, setData] = useState(userRows);
+
+  const [userData, setUserData] = useState([]);
+
+  useEffect(() => {
+    userApis
+      .getAllUser()
+      .then((result) => {
+        setUserData(result.data);
+      })
+      .catch((error) => {
+        setUserData([]);
+      });
+  }, []);
 
   const handleDelete = (id) => {
     setData(data.filter((item) => item.id !== id));
@@ -17,7 +32,7 @@ export default function UserList() {
     { field: 'id', headerName: 'ID', width: 90 },
     {
       field: 'user',
-      headerName: 'User',
+      headerName: 'Customer',
       width: 200,
       renderCell: (params) => {
         return (

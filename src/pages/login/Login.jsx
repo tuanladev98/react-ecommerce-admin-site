@@ -1,9 +1,14 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import './Login.css';
 import authApis from '../../api/auth.api';
-import { loginFailure, loginStart, loginSuccess } from '../../redux/user_slice';
+import {
+  loginFailure,
+  loginStart,
+  loginSuccess,
+  logout,
+} from '../../redux/user_slice';
 
 const Login = () => {
   const [email, setEmail] = useState(null);
@@ -13,6 +18,10 @@ const Login = () => {
   );
   const dispatch = useDispatch();
   const { isFetching, isError } = useSelector((state) => state.user);
+
+  useEffect(() => {
+    dispatch(logout());
+  }, [dispatch]);
 
   const handleLogin = (e) => {
     e.preventDefault();
@@ -28,6 +37,7 @@ const Login = () => {
         } catch (error) {
           const { statusCode, message } = error.response.data;
           if (statusCode < 500) setLoginErrorMessage(message);
+          else setLoginErrorMessage('Something went wrong...');
           dispatch(loginFailure());
         }
       };

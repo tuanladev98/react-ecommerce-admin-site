@@ -44,7 +44,7 @@ function App() {
               <Route path="/user/:userId">
                 <User />
               </Route>
-              <Route path="/newUser">
+              <Route path="/new-user">
                 <NewUser />
               </Route>
               <Route path="/products">
@@ -53,7 +53,7 @@ function App() {
               <Route path="/product/:productId">
                 <Product />
               </Route>
-              <Route path="/newproduct">
+              <Route path="/new-product">
                 <NewProduct />
               </Route>
             </div>

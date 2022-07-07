@@ -8,7 +8,7 @@ export default function TopBar() {
     <div className="topbar">
       <div className="topbarWrapper">
         <div className="topLeft">
-          <span className="logo">TuanLa. Management</span>
+          <span className="logo">Admin Management</span>
         </div>
         <div className="topRight">
           <div className="topbarIconContainer">
@@ -23,7 +23,7 @@ export default function TopBar() {
             <Settings />
           </div>
           <img
-            src="https://images.pexels.com/photos/1526814/pexels-photo-1526814.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500"
+            src="https://crowd-literature.eu/wp-content/uploads/2015/01/no-avatar.gif"
             alt=""
             className="topAvatar"
           />

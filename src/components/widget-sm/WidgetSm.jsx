@@ -26,7 +26,7 @@ export default function WidgetSm() {
           return (
             <li className="widgetSmListItem" key={customer.id}>
               <img
-                src="https://images.pexels.com/photos/3992656/pexels-photo-3992656.png?auto=compress&cs=tinysrgb&dpr=2&w=500"
+                src="https://crowd-literature.eu/wp-content/uploads/2015/01/no-avatar.gif"
                 alt=""
                 className="widgetSmImg"
               />

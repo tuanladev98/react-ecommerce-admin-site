@@ -6,12 +6,12 @@ import {
   MailOutline,
   PermIdentity,
   PhoneAndroid,
-  Publish,
 } from '@material-ui/icons';
 
 import './User.css';
 
 import userApis from '../../api/user.api';
+import WidgetLg from '../../components/widget-lg/WidgetLg';
 
 export default function User() {
   const location = useLocation();
@@ -71,7 +71,11 @@ export default function User() {
               </div>
             </div>
           </div>
-          <div className="userUpdate">
+          <WidgetLg
+            tableTitle={'User transactions'}
+            transactionData={user.orders}
+          />
+          {/* <div className="userUpdate">
             <span className="userUpdateTitle">Transactions</span>
             <form className="userUpdateForm">
               <div className="userUpdateLeft">
@@ -131,7 +135,7 @@ export default function User() {
                 <button className="userUpdateButton">Update</button>
               </div>
             </form>
-          </div>
+          </div> */}
         </div>
       </div>
     )

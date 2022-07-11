@@ -18,7 +18,7 @@ export default function UserList() {
       .catch((error) => {
         setUserData([]);
       });
-  }, [userData]);
+  }, []);
 
   const columns = [
     { field: 'id', headerName: 'ID', width: 90 },
@@ -67,14 +67,16 @@ export default function UserList() {
   ];
 
   return (
-    <div className="userList">
-      <DataGrid
-        rows={userData}
-        disableSelectionOnClick
-        columns={columns}
-        pageSize={8}
-        checkboxSelection={true}
-      />
-    </div>
+    userData.length && (
+      <div className="userList">
+        <DataGrid
+          rows={userData}
+          disableSelectionOnClick
+          columns={columns}
+          pageSize={8}
+          checkboxSelection={true}
+        />
+      </div>
+    )
   );
 }

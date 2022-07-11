@@ -9,6 +9,7 @@ import statsApis from '../../api/stats.api';
 
 export default function Home() {
   const [customerAnalyticsData, setCustomerAnalyticsData] = useState([]);
+  const [newestTransactions, setNewestTransactions] = useState([]);
 
   useEffect(() => {
     statsApis.getChartCustomerAnalytics().then((result) => {
@@ -23,6 +24,17 @@ export default function Home() {
     });
   }, []);
 
+  useEffect(() => {
+    statsApis
+      .getListNewestTransaction()
+      .then((result) => {
+        setNewestTransactions(result.data);
+      })
+      .catch((error) => {
+        setNewestTransactions([]);
+      });
+  }, []);
+
   return (
     <div className="home">
       <FeaturedInfo />
@@ -34,7 +46,10 @@ export default function Home() {
       />
       <div className="homeWidgets">
         <WidgetSm />
-        <WidgetLg />
+        <WidgetLg
+          tableTitle={'Newest transactions'}
+          transactionData={newestTransactions}
+        />
       </div>
     </div>
   );

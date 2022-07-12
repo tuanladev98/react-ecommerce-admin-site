@@ -1,11 +1,11 @@
 import {
-  LineStyle,
-  Timeline,
   // TrendingUp,
   PermIdentity,
   Storefront,
   AttachMoney,
   BarChart,
+  ChatBubbleOutline,
+  HomeOutlined,
   // MailOutline,
   // DynamicFeed,
   // ChatBubbleOutline,
@@ -25,13 +25,13 @@ export default function SideBar() {
           <ul className="sidebarList">
             <Link to="/" className="link">
               <li className="sidebarListItem active">
-                <LineStyle className="sidebarIcon" />
+                <HomeOutlined className="sidebarIcon" />
                 Home
               </li>
             </Link>
             <li className="sidebarListItem">
-              <Timeline className="sidebarIcon" />
-              Analytics
+              <ChatBubbleOutline className="sidebarIcon" />
+              Messages
             </li>
             {/* <li className="sidebarListItem">
               <TrendingUp className="sidebarIcon" />

@@ -69,11 +69,15 @@ export default function UserList() {
   return (
     userData.length && (
       <div className="userList">
+        <div className="userListTitleContainer">
+          <h1 className="userTitle">Customer List</h1>
+        </div>
         <DataGrid
           rows={userData}
+          autoHeight
           disableSelectionOnClick
           columns={columns}
-          pageSize={8}
+          pageSize={10}
           checkboxSelection={true}
         />
       </div>

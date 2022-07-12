@@ -1,43 +1,74 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { DataGrid } from '@material-ui/data-grid';
 import { DeleteOutline } from '@material-ui/icons';
 
 import './ProductList.css';
-import { productRows } from '../../dummyData';
+
+import productApis from '../../api/product.api';
+import numberWithCommas from '../../utils/numberWithCommas';
 
 export default function ProductList() {
-  const [data, setData] = useState(productRows);
+  const [productData, setProductData] = useState([]);
+
+  useEffect(() => {
+    productApis
+      .getAllForAdminSite()
+      .then((result) => {
+        setProductData(result.data);
+      })
+      .catch((error) => {
+        setProductData([]);
+      });
+  }, []);
 
   const handleDelete = (id) => {
-    setData(data.filter((item) => item.id !== id));
+    productApis
+      .deleteProduct(id)
+      .then((result) => {
+        productApis
+          .getAllForAdminSite()
+          .then((result) => {
+            setProductData(result.data);
+          })
+          .catch((error) => {
+            setProductData([]);
+          });
+      })
+      .catch((error) => alert('Delete fail!'));
   };
 
   const columns = [
-    { field: 'id', headerName: 'ID', width: 90 },
+    { field: 'code', headerName: 'Product Code', width: 160 },
     {
-      field: 'product',
-      headerName: 'Product',
-      width: 200,
+      field: 'name',
+      headerName: 'Product Name',
+      width: 250,
       renderCell: (params) => {
         return (
           <div className="productListItem">
-            <img className="productListImg" src={params.row.img} alt="" />
-            {params.row.name}
+            <img className="productListImg" src={params.row.image01} alt="" />
+            {params.row.productName}
           </div>
         );
       },
     },
-    { field: 'stock', headerName: 'Stock', width: 200 },
+    { field: 'quantity', headerName: 'Stock', width: 130 },
     {
-      field: 'status',
-      headerName: 'Status',
+      field: 'gender',
+      headerName: 'Gender',
       width: 120,
+      renderCell: (params) => {
+        return <span>{params.row.gender.toLowerCase()}</span>;
+      },
     },
     {
       field: 'price',
       headerName: 'Price',
       width: 160,
+      renderCell: (params) => {
+        return <span>{numberWithCommas(Number(params.row.price))}₫</span>;
+      },
     },
     {
       field: 'action',
@@ -47,7 +78,7 @@ export default function ProductList() {
         return (
           <>
             <Link to={'/product/' + params.row.id}>
-              <button className="productListEdit">Edit</button>
+              <button className="productListEdit">Detail</button>
             </Link>
             <DeleteOutline
               className="productListDelete"
@@ -60,14 +91,23 @@ export default function ProductList() {
   ];
 
   return (
-    <div className="productList">
-      <DataGrid
-        rows={data}
-        disableSelectionOnClick
-        columns={columns}
-        pageSize={8}
-        checkboxSelection
-      />
-    </div>
+    productData.length && (
+      <div className="productList">
+        <div className="productListTitleContainer">
+          <h1 className="productTitle">Product List</h1>
+          <Link to="/new-product">
+            <button className="productAddButton">Create</button>
+          </Link>
+        </div>
+        <DataGrid
+          rows={productData}
+          autoHeight
+          disableSelectionOnClick
+          columns={columns}
+          pageSize={10}
+          checkboxSelection
+        />
+      </div>
+    )
   );
 }

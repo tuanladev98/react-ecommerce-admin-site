@@ -7,6 +7,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  padding: 10px;
 }
 
 .productAddButton {
@@ -100,14 +101,6 @@
   margin-bottom: 10px;
 }
 
-.productUploadImg {
-  width: 100px;
-  height: 100px;
-  border-radius: 10px;
-  object-fit: cover;
-  margin-right: 20px;
-}
-
 .productFormRight {
   display: flex;
   flex-direction: column;
@@ -117,6 +110,14 @@
 .productUpload {
   display: flex;
   align-items: center;
+}
+
+.productUploadImg {
+  width: 100px;
+  height: 100px;
+  border-radius: 10px;
+  object-fit: cover;
+  margin-right: 20px;
 }
 
 .productButton {

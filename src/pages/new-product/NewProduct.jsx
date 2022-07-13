@@ -1,5 +1,10 @@
 import { useEffect, useState } from 'react';
-import { Publish } from '@material-ui/icons';
+import {
+  CloseOutlined,
+  CloseRounded,
+  Delete,
+  Publish,
+} from '@material-ui/icons';
 
 import './NewProduct.css';
 
@@ -65,7 +70,23 @@ export default function NewProduct() {
 
   return (
     <div className="newProduct">
-      <h1 className="addProductTitle">New Product</h1>
+      <div className="addProductTitleContainer">
+        <h1 className="addProductTitle">New Product</h1>
+        <button
+          className="addProductButton"
+          disabled={
+            !categoryId ||
+            !productName ||
+            price === 0 ||
+            !gender ||
+            !image01 ||
+            !image02
+          }
+          onClick={handleSaveProduct}
+        >
+          Save
+        </button>
+      </div>
       <div className="addProductContainer">
         <div className="addProductForm">
           <div className="addProductItem">
@@ -173,23 +194,19 @@ export default function NewProduct() {
         </div>
         <div className="addProductSize">
           <span>List sizes</span>
+          <div className="addListSize">
+            <div className="addSizeItem">
+              <span className="sizeTitle">Size: {24}</span>
+              <div className="sizeQuantity">
+                <span>Quantity: </span>
+                <input type="number" min={1} defaultValue={10} />
+              </div>
+              <span style={{ color: 'red' }}>
+                <CloseRounded />
+              </span>
+            </div>
+          </div>
         </div>
-      </div>
-      <div className="submitAddProduct">
-        <button
-          className="addProductButton"
-          disabled={
-            !categoryId ||
-            !productName ||
-            price === 0 ||
-            !gender ||
-            !image01 ||
-            !image02
-          }
-          onClick={handleSaveProduct}
-        >
-          Save Product
-        </button>
       </div>
     </div>
   );

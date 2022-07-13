@@ -99,15 +99,63 @@
 }
 
 .addListSize {
-  margin: 10px;
+  /* margin: 10px; */
   padding: 20px;
-  width: 400px;
+  width: 350px;
 }
 
-.addSizeItem {
+.sizeItem {
+  margin: 10px;
+  padding: 3px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: rgb(240, 240, 240);
+  border-radius: 10px;
+  border: 1px dashed rgb(2, 189, 2);
+}
+
+.sizeItemTitle {
+  padding: 0px 10px;
+}
+
+.sizeItemQuantity {
   display: flex;
   justify-content: space-around;
   align-items: center;
-  background-color: rgb(226, 226, 226);
-  border-radius: 20px;
+}
+
+.sizeItemQuantity > input {
+  margin: 0 10px;
+  width: 30px;
+  border: none;
+  background-color: rgb(240, 240, 240);
+}
+
+.deleteSizeItem {
+  color: red;
+  padding: 0px 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.addSizeItem {
+  margin: 10px;
+  padding: 3px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: rgb(240, 240, 240);
+  border-radius: 10px;
+  border: 1px dashed lightgray;
+}
+
+.addSizeItem:hover {
+  border: 1px dashed rgb(2, 189, 2);
+}
+
+.addSizeItemSelect {
+  padding: 0px 10px;
 }

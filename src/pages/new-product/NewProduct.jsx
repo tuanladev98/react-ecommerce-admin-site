@@ -1,10 +1,5 @@
 import { useEffect, useState } from 'react';
-import {
-  CloseOutlined,
-  CloseRounded,
-  Delete,
-  Publish,
-} from '@material-ui/icons';
+import { Cancel, Publish } from '@material-ui/icons';
 
 import './NewProduct.css';
 
@@ -195,15 +190,23 @@ export default function NewProduct() {
         <div className="addProductSize">
           <span>List sizes</span>
           <div className="addListSize">
-            <div className="addSizeItem">
-              <span className="sizeTitle">Size: {24}</span>
-              <div className="sizeQuantity">
+            <div className="sizeItem">
+              <span className="sizeItemTitle">Size: {24}</span>
+              <div className="sizeItemQuantity">
                 <span>Quantity: </span>
                 <input type="number" min={1} defaultValue={10} />
               </div>
-              <span style={{ color: 'red' }}>
-                <CloseRounded />
-              </span>
+              <div className="deleteSizeItem">
+                <Cancel />
+              </div>
+            </div>
+            <div className="addSizeItem">
+              <div className="addSizeItemSelect">
+                <span>Select size:</span>
+                <select name="">
+                  <option>dddd</option>
+                </select>
+              </div>
             </div>
           </div>
         </div>

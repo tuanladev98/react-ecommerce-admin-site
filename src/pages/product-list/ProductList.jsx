@@ -53,7 +53,18 @@ export default function ProductList() {
         );
       },
     },
-    { field: 'quantity', headerName: 'Stock', width: 130 },
+    {
+      field: 'quantity',
+      headerName: 'Stock',
+      width: 130,
+      renderCell: (params) => {
+        return (
+          <span>
+            {!params.row.quantity ? 'Out of stock' : params.row.quantity}
+          </span>
+        );
+      },
+    },
     {
       field: 'gender',
       headerName: 'Gender',

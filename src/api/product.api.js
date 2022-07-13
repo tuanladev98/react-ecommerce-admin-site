@@ -5,6 +5,10 @@ const productApis = {
     return createPrivateRequest().get(`/product/all-for-admin`);
   },
 
+  createProduct: (data) => {
+    return createPrivateRequest().post('/product/create', data);
+  },
+
   deleteProduct: (productId) => {
     return createPrivateRequest().delete('/product/delete/' + productId);
   },

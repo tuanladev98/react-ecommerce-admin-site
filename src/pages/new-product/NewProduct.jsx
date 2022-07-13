@@ -1,9 +1,10 @@
 import { useEffect, useState } from 'react';
+import { Publish } from '@material-ui/icons';
 
 import './NewProduct.css';
 
 import categoryApis from '../../api/category.api';
-import { Publish } from '@material-ui/icons';
+import productApis from '../../api/product.api';
 
 export default function NewProduct() {
   const [categories, setCategories] = useState([]);
@@ -38,6 +39,28 @@ export default function NewProduct() {
     setImage02(
       'https://assets.adidas.com/images/h_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/8193b058631349cc8575adf5007c3e3a_9366/Giay_ZX_22_BOOST_trang_GY6695_02_standard_hover.jpg'
     );
+  };
+
+  const handleSaveProduct = (e) => {
+    e.preventDefault();
+    productApis
+      .createProduct({
+        categoryId,
+        productName,
+        price,
+        gender,
+        description,
+        image01,
+        image02,
+        listSize,
+      })
+      .then((result) => {
+        alert('Create success!');
+        window.location.href = '/product/' + result.data.id;
+      })
+      .catch((error) => {
+        alert('Create fail!');
+      });
   };
 
   return (
@@ -153,7 +176,20 @@ export default function NewProduct() {
         </div>
       </div>
       <div className="submitAddProduct">
-        <button className="addProductButton">Save Product</button>
+        <button
+          className="addProductButton"
+          disabled={
+            !categoryId ||
+            !productName ||
+            price === 0 ||
+            !gender ||
+            !image01 ||
+            !image02
+          }
+          onClick={handleSaveProduct}
+        >
+          Save Product
+        </button>
       </div>
     </div>
   );

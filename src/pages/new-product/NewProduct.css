@@ -89,3 +89,10 @@
   font-weight: 600;
   cursor: pointer;
 }
+
+.addProductButton:disabled {
+  background-color: lightgray;
+  color: black;
+  font-weight: 600;
+  cursor: not-allowed;
+}

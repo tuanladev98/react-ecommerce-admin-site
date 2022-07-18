@@ -12,11 +12,14 @@ import {
   // WorkOutline,
   // Report,
 } from '@material-ui/icons';
+import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 import './SideBar.css';
 
 export default function SideBar() {
+  const { activeMenu } = useSelector((state) => state.sideBar);
+
   return (
     <div className="sidebar">
       <div className="sidebarWrapper">
@@ -24,80 +27,66 @@ export default function SideBar() {
           <h3 className="sidebarTitle">Dashboard</h3>
           <ul className="sidebarList">
             <Link to="/" className="link">
-              <li className="sidebarListItem active">
+              <li
+                className={`sidebarListItem ${
+                  activeMenu === 'HOME' ? 'active' : ''
+                }`}
+              >
                 <HomeOutlined className="sidebarIcon" />
                 Home
               </li>
             </Link>
-            <li className="sidebarListItem">
+            <li
+              className={`sidebarListItem ${
+                activeMenu === 'MESSAGE' ? 'active' : ''
+              }`}
+            >
               <ChatBubbleOutline className="sidebarIcon" />
               Messages
             </li>
-            {/* <li className="sidebarListItem">
-              <TrendingUp className="sidebarIcon" />
-              Sales
-            </li> */}
           </ul>
         </div>
         <div className="sidebarMenu">
           <h3 className="sidebarTitle">Quick Menu</h3>
           <ul className="sidebarList">
             <Link to="/user" className="link">
-              <li className="sidebarListItem">
+              <li
+                className={`sidebarListItem ${
+                  activeMenu === 'USER' ? 'active' : ''
+                }`}
+              >
                 <PermIdentity className="sidebarIcon" />
                 Users
               </li>
             </Link>
             <Link to="/product" className="link">
-              <li className="sidebarListItem">
+              <li
+                className={`sidebarListItem ${
+                  activeMenu === 'PRODUCT' ? 'active' : ''
+                }`}
+              >
                 <Storefront className="sidebarIcon" />
                 Products
               </li>
             </Link>
-            <li className="sidebarListItem">
+            <li
+              className={`sidebarListItem ${
+                activeMenu === 'TRANSACTION' ? 'active' : ''
+              }`}
+            >
               <AttachMoney className="sidebarIcon" />
               Transactions
             </li>
-            <li className="sidebarListItem">
+            <li
+              className={`sidebarListItem ${
+                activeMenu === 'REPORT' ? 'active' : ''
+              }`}
+            >
               <BarChart className="sidebarIcon" />
               Reports
             </li>
           </ul>
         </div>
-        {/* <div className="sidebarMenu">
-          <h3 className="sidebarTitle">Notifications</h3>
-          <ul className="sidebarList">
-            <li className="sidebarListItem">
-              <MailOutline className="sidebarIcon" />
-              Mail
-            </li>
-            <li className="sidebarListItem">
-              <DynamicFeed className="sidebarIcon" />
-              Feedback
-            </li>
-            <li className="sidebarListItem">
-              <ChatBubbleOutline className="sidebarIcon" />
-              Messages
-            </li>
-          </ul>
-        </div>
-        <div className="sidebarMenu">
-          <h3 className="sidebarTitle">Staff</h3>
-          <ul className="sidebarList">
-            <li className="sidebarListItem">
-              <WorkOutline className="sidebarIcon" />
-              Manage
-            </li>
-            <li className="sidebarListItem">
-              <Timeline className="sidebarIcon" />
-              Analytics
-            </li>
-            <li className="sidebarListItem">
-              <Report className="sidebarIcon" />
-              Reports
-            </li>
-          </ul>
-        </div> */}
       </div>
     </div>
   );

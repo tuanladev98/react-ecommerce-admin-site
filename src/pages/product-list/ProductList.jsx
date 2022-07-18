@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { DataGrid } from '@material-ui/data-grid';
 import { DeleteOutline } from '@material-ui/icons';
@@ -7,9 +8,15 @@ import './ProductList.css';
 
 import productApis from '../../api/product.api';
 import numberWithCommas from '../../utils/numberWithCommas';
+import { changeMenu } from '../../redux/side_bar_slice';
 
 export default function ProductList() {
+  const dispatch = useDispatch();
   const [productData, setProductData] = useState([]);
+
+  useEffect(() => {
+    dispatch(changeMenu('PRODUCT'));
+  }, [dispatch]);
 
   useEffect(() => {
     productApis

@@ -27,7 +27,6 @@ export default function NewProduct() {
 
   const handleUploadImage01 = (e) => {
     e.preventDefault();
-    console.log(e.target.files[0]);
     setImage01(
       'https://assets.adidas.com/images/h_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/8129befd83a043678710adf5007bf1e7_9366/Giay_ZX_22_BOOST_trang_GY6695_01_standard.jpg'
     );
@@ -35,7 +34,6 @@ export default function NewProduct() {
 
   const handleUploadImage02 = (e) => {
     e.preventDefault();
-    console.log(e.target.files[0]);
     setImage02(
       'https://assets.adidas.com/images/h_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/8193b058631349cc8575adf5007c3e3a_9366/Giay_ZX_22_BOOST_trang_GY6695_02_standard_hover.jpg'
     );

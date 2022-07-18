@@ -14,7 +14,6 @@ export default function FeaturedInfo() {
     statsApis
       .getStatsSummary()
       .then((result) => {
-        console.log(result);
         const { transactionSummary, quantitySummary, incomeSummary } =
           result.data;
 

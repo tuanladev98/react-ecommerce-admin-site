@@ -1,11 +1,20 @@
+import { useEffect } from 'react';
 import { Publish } from '@material-ui/icons';
 
 import './Product.css';
 
 import Chart from '../../components/chart/Chart';
 import { productData } from '../../dummyData';
+import { useDispatch } from 'react-redux';
+import { changeMenu } from '../../redux/side_bar_slice';
 
 export default function Product() {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(changeMenu('PRODUCT'));
+  }, [dispatch]);
+
   return (
     <div className="product">
       <div className="productTitleContainer">

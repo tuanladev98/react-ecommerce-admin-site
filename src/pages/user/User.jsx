@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { useLocation } from 'react-router-dom';
 import {
   CalendarToday,
@@ -12,11 +13,17 @@ import './User.css';
 
 import userApis from '../../api/user.api';
 import WidgetLg from '../../components/widget-lg/WidgetLg';
+import { changeMenu } from '../../redux/side_bar_slice';
 
 export default function User() {
   const location = useLocation();
+  const dispatch = useDispatch();
   const userId = location.pathname.split('/')[2];
   const [user, setUser] = useState(null);
+
+  useEffect(() => {
+    dispatch(changeMenu('USER'));
+  }, [dispatch]);
 
   useEffect(() => {
     userApis

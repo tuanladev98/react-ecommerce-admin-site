@@ -1,13 +1,20 @@
 import { useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { DataGrid } from '@material-ui/data-grid';
 
 import './UserList.css';
 
 import userApis from '../../api/user.api';
+import { changeMenu } from '../../redux/side_bar_slice';
 
 export default function UserList() {
+  const dispatch = useDispatch();
   const [userData, setUserData] = useState([]);
+
+  useEffect(() => {
+    dispatch(changeMenu('USER'));
+  }, [dispatch]);
 
   useEffect(() => {
     userApis

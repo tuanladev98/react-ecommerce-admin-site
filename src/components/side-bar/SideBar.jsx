@@ -36,14 +36,16 @@ export default function SideBar() {
                 Home
               </li>
             </Link>
-            <li
-              className={`sidebarListItem ${
-                activeMenu === 'MESSAGE' ? 'active' : ''
-              }`}
-            >
-              <ChatBubbleOutline className="sidebarIcon" />
-              Messages
-            </li>
+            <Link to="/support-user" className="link">
+              <li
+                className={`sidebarListItem ${
+                  activeMenu === 'MESSAGE' ? 'active' : ''
+                }`}
+              >
+                <ChatBubbleOutline className="sidebarIcon" />
+                Messages
+              </li>
+            </Link>
           </ul>
         </div>
         <div className="sidebarMenu">

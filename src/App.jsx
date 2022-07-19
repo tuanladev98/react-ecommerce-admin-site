@@ -17,6 +17,7 @@ import NewProduct from './pages/new-product/NewProduct';
 import Login from './pages/login/Login';
 import SideBar from './components/side-bar/SideBar';
 import TopBar from './components/top-bar/TopBar';
+import ChatBox from './pages/chat-box/ChatBox';
 
 function App() {
   const CURRENT_ADMIN = JSON.parse(localStorage.getItem('currentAdmin'));
@@ -36,6 +37,9 @@ function App() {
               <SideBar />
               <Route exact path="/">
                 <Home />
+              </Route>
+              <Route path="/support-user">
+                <ChatBox />
               </Route>
               <Route exact path="/user">
                 <UserList />

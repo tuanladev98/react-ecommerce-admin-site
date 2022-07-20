@@ -1,9 +1,11 @@
+import { useEffect } from 'react';
 import {
   BrowserRouter as Router,
   Switch,
   Route,
   Redirect,
 } from 'react-router-dom';
+import io from 'socket.io-client';
 
 import './App.css';
 
@@ -19,8 +21,25 @@ import SideBar from './components/side-bar/SideBar';
 import TopBar from './components/top-bar/TopBar';
 import ChatBox from './pages/chat-box/ChatBox';
 
+const socket = io('http://localhost:4001');
+
 function App() {
   const CURRENT_ADMIN = JSON.parse(localStorage.getItem('currentAdmin'));
+
+  useEffect(() => {
+    socket.on('connect', () => {
+      console.log(`Socket connect [${socket.id}]`);
+    });
+
+    socket.on('disconnect', () => {
+      console.log(`Socket disconnect`);
+    });
+
+    return () => {
+      socket.off('connect');
+      socket.off('disconnect');
+    };
+  }, []);
 
   return (
     <Router>

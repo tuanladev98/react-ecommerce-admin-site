@@ -154,7 +154,11 @@
 .messageBoxMain {
   height: 100%;
   padding: 10px;
-  overflow-y: hidden;
+  overflow-y: scroll;
+}
+
+.messageBoxMain::-webkit-scrollbar {
+  display: none;
 }
 
 .messageElement {

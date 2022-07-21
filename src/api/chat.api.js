@@ -6,6 +6,17 @@ const chatApis = {
 
     return result;
   },
+
+  getMessages: (userId, beforeId) => {
+    const result = createPrivateRequest().get(
+      '/realtime/conversation/' + userId,
+      {
+        params: { beforeId },
+      }
+    );
+
+    return result;
+  },
 };
 
 export default chatApis;

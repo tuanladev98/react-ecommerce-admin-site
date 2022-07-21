@@ -18,6 +18,7 @@ import Login from './pages/login/Login';
 import SideBar from './components/side-bar/SideBar';
 import TopBar from './components/top-bar/TopBar';
 import ChatBox from './pages/chat-box/ChatBox';
+import { socket, SocketContext } from './socket/socketContext';
 
 function App() {
   const CURRENT_ADMIN = JSON.parse(localStorage.getItem('currentAdmin'));
@@ -31,7 +32,7 @@ function App() {
         {!CURRENT_ADMIN ? (
           <Redirect to="/login" />
         ) : (
-          <>
+          <SocketContext.Provider value={socket}>
             <TopBar />
             <div className="container">
               <SideBar />
@@ -60,7 +61,7 @@ function App() {
                 <NewProduct />
               </Route>
             </div>
-          </>
+          </SocketContext.Provider>
         )}
       </Switch>
     </Router>

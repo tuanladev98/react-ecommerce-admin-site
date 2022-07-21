@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { Send } from '@material-ui/icons';
 
@@ -6,11 +6,30 @@ import './ChatBox.css';
 
 import { changeMenu } from '../../redux/side_bar_slice';
 import chatApis from '../../api/chat.api';
+import { SocketContext } from '../../socket/socketContext';
 
 export default function ChatBox() {
+  const adminId = JSON.parse(localStorage.getItem('currentAdmin')).userInfo.id;
+  const socket = useContext(SocketContext);
   const dispatch = useDispatch();
   const [activeConversation, setActiveConversation] = useState(null);
   const [conversations, setConversations] = useState([]);
+  const [messages, setMessages] = useState([]);
+  const [textMessageInput, setTextMessageInput] = useState(null);
+
+  useEffect(() => {
+    socket.emit('admin_online', {
+      adminId,
+    });
+
+    socket.on('new_message', (newMessage) => {
+      setMessages([...messages, newMessage]);
+    });
+
+    return () => {
+      socket.off('new_message');
+    };
+  }, [socket, adminId, messages]);
 
   useEffect(() => {
     dispatch(changeMenu('MESSAGE'));
@@ -32,7 +51,25 @@ export default function ChatBox() {
   };
 
   const handleClickConversation = (convData) => {
+    if (activeConversation && activeConversation.id !== convData.id)
+      socket.emit('admin_leave_client_room', {
+        clientId: activeConversation.id,
+      });
+    if (!activeConversation || activeConversation.id !== convData.id)
+      socket.emit('admin_join_client_room', { clientId: convData.id });
     setActiveConversation(convData);
+    setTextMessageInput(null);
+    setMessages([]);
+  };
+
+  const handleSendMessage = (e) => {
+    e.preventDefault();
+    if (textMessageInput)
+      socket.emit('admin_send_message_text', {
+        clientId: activeConversation.id,
+        text: textMessageInput,
+      });
+    setTextMessageInput(null);
   };
 
   return (
@@ -81,42 +118,47 @@ export default function ChatBox() {
       ) : (
         <div className="messageBoxContainer">
           <div className="messageBoxHeader">
-            <div className="messageBoxHeaderUserImage">
-              <span>LA</span>
+            <div
+              className="messageBoxHeaderUserImage"
+              style={{ backgroundColor: activeConversation.userColor }}
+            >
+              <span>{getAbbreviationsName(activeConversation.name)}</span>
             </div>
             <div className="messageBoxHeaderUserName">
-              <span>Le Anh Tuan</span>
+              <span>{activeConversation.name}</span>
             </div>
           </div>
           <div className="messageBoxMain">
-            <div className="messageElement incomeMessage">
-              <div className="messageMain">
-                <div className="messageContent">
-                  Xin chào! Tôi giúp gì được cho bạn
+            {messages.map((message) => {
+              return (
+                <div
+                  className={`messageElement ${
+                    message.sender === 'ADMIN' ? 'sentMessage' : 'incomeMessage'
+                  }`}
+                >
+                  <div className="messageMain">
+                    <div className="messageContent">{message.text}</div>
+                    <span className="messageTime">
+                      {new Date(message.createdAt).toLocaleString()}
+                    </span>
+                  </div>
                 </div>
-                <span className="messageTime">23:00</span>
-              </div>
-            </div>
-
-            <div className="messageElement sentMessage">
-              <div className="messageMain">
-                <div className="messageContent">
-                  Xin chào! Tôi giúp gì được cho bạn
-                </div>
-                <span className="messageTime">
-                  {new Date('2022-01-15T11:02:17Z').toLocaleString()}
-                </span>
-              </div>
-            </div>
+              );
+            })}
           </div>
           <div className="messageBoxFooter">
             <div className="messageInputContainer">
               <textarea
                 className="messageInput"
                 placeholder="Type a message..."
+                value={!textMessageInput ? '' : textMessageInput}
+                onChange={(e) => setTextMessageInput(e.target.value)}
               ></textarea>
             </div>
-            <div className="sendBtn activeBtn">
+            <div
+              className={!textMessageInput ? 'sendBtn' : 'sendBtn activeBtn'}
+              onClick={handleSendMessage}
+            >
               <Send />
             </div>
           </div>

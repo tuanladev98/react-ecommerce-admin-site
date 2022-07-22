@@ -1,5 +1,6 @@
 import { useContext, useEffect, useRef, useState } from 'react';
 import { useDispatch } from 'react-redux';
+import { Link } from 'react-router-dom';
 import { Send } from '@material-ui/icons';
 import * as dayjs from 'dayjs';
 
@@ -8,7 +9,6 @@ import './ChatBox.css';
 import { changeMenu } from '../../redux/side_bar_slice';
 import chatApis from '../../api/chat.api';
 import { SocketContext } from '../../socket/socketContext';
-import { Link } from 'react-router-dom';
 
 export default function ChatBox() {
   const adminId = JSON.parse(localStorage.getItem('currentAdmin')).userInfo.id;
@@ -70,6 +70,7 @@ export default function ChatBox() {
     return () => {
       socket.off('new_message');
       socket.off('has_new_message_from_client');
+      socket.off('has_new_message_from_admin');
       socket.off('admin_seen_message_for_client');
     };
   }, [socket, adminId, messages, conversations]);

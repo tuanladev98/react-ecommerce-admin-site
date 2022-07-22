@@ -1,12 +1,14 @@
 import { useContext, useEffect, useRef, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { Send } from '@material-ui/icons';
+import * as dayjs from 'dayjs';
 
 import './ChatBox.css';
 
 import { changeMenu } from '../../redux/side_bar_slice';
 import chatApis from '../../api/chat.api';
 import { SocketContext } from '../../socket/socketContext';
+import { Link } from 'react-router-dom';
 
 export default function ChatBox() {
   const adminId = JSON.parse(localStorage.getItem('currentAdmin')).userInfo.id;
@@ -30,6 +32,18 @@ export default function ChatBox() {
     });
 
     socket.on('has_new_message_from_client', (convData) => {
+      const currConversations = [...conversations];
+      const idx = currConversations.findIndex(
+        (conv) => conv.id === convData.id
+      );
+
+      if (idx !== -1) currConversations.splice(idx, 1);
+      currConversations.unshift(convData);
+
+      setConversations(currConversations);
+    });
+
+    socket.on('has_new_message_from_admin', (convData) => {
       const currConversations = [...conversations];
       const idx = currConversations.findIndex(
         (conv) => conv.id === convData.id
@@ -143,11 +157,15 @@ export default function ChatBox() {
                 </div>
                 <div className="userInfo">
                   <span className="userName">{conv.name}</span>
-                  <span className="lastMessage">{conv.latestMessage}</span>
+                  <span className="lastMessage">
+                    {conv.latestMessageSender === 'ADMIN'
+                      ? `You: ${conv.latestMessage}`
+                      : conv.latestMessage}
+                  </span>
                 </div>
                 <div className="conversationInfo">
                   <span className="lastMessageTime">
-                    {new Date(conv.latestMessageDate).toLocaleString()}
+                    {dayjs(conv.latestMessageDate).format('DD-MM-YYYY HH:mm')}
                   </span>
                   {parseInt(conv.totalUnseenMessage) === 0 ? (
                     <span></span>
@@ -171,14 +189,21 @@ export default function ChatBox() {
       ) : (
         <div className="messageBoxContainer">
           <div className="messageBoxHeader">
-            <div
-              className="messageBoxHeaderUserImage"
-              style={{ backgroundColor: activeConversation.userColor }}
-            >
-              <span>{getAbbreviationsName(activeConversation.name)}</span>
+            <div className="messageBoxHeaderUserInfo">
+              <div
+                className="messageBoxHeaderUserImage"
+                style={{ backgroundColor: activeConversation.userColor }}
+              >
+                <span>{getAbbreviationsName(activeConversation.name)}</span>
+              </div>
+              <div className="messageBoxHeaderUserName">
+                <span>{activeConversation.name}</span>
+              </div>
             </div>
-            <div className="messageBoxHeaderUserName">
-              <span>{activeConversation.name}</span>
+            <div messageBoxHeaderAction>
+              <Link to={'/user/' + activeConversation.id}>
+                <button className="btnShowUserDetail">Detail</button>
+              </Link>
             </div>
           </div>
 
@@ -193,7 +218,7 @@ export default function ChatBox() {
                   <div className="messageMain">
                     <div className="messageContent">{message.text}</div>
                     <span className="messageTime">
-                      {new Date(message.createdAt).toLocaleString()}
+                      {dayjs(message.createdAt).format('DD-MM-YYYY HH:mm')}
                     </span>
                   </div>
                 </div>

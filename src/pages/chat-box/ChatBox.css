@@ -88,6 +88,7 @@
 
 .lastMessageTime {
   font-weight: 500;
+  font-size: 14px;
 }
 
 .unreadMessage {
@@ -130,8 +131,14 @@
   height: 60px;
   border-bottom: 1px solid lightgray;
   display: flex;
+  justify-content: space-between;
   align-items: center;
   padding: 10px;
+}
+
+.messageBoxHeaderUserInfo {
+  display: flex;
+  align-items: center;
 }
 
 .messageBoxHeaderUserImage {
@@ -149,6 +156,12 @@
 
 .messageBoxHeaderUserName {
   font-weight: 600;
+}
+
+.messageBoxHeaderAction {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .messageBoxMain {

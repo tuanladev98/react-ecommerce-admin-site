@@ -29,6 +29,18 @@ export default function ChatBox() {
       setMessages([...messages, newMessage]);
     });
 
+    socket.on('has_new_message_from_client', (convData) => {
+      const currConversations = [...conversations];
+      const idx = currConversations.findIndex(
+        (conv) => conv.id === convData.id
+      );
+
+      if (idx !== -1) currConversations.splice(idx, 1);
+      currConversations.unshift(convData);
+
+      setConversations(currConversations);
+    });
+
     socket.on('admin_seen_message_for_client', (data) => {
       const { clientId } = data;
       let currConversations = [...conversations];
@@ -43,6 +55,7 @@ export default function ChatBox() {
 
     return () => {
       socket.off('new_message');
+      socket.off('has_new_message_from_client');
       socket.off('admin_seen_message_for_client');
     };
   }, [socket, adminId, messages, conversations]);

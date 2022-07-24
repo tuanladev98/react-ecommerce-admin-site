@@ -29,6 +29,31 @@ export default function FeaturedInfo() {
   return (
     <div className="featured">
       <div className="featuredItem">
+        <span className="featuredTitle">Income</span>
+        {income && (
+          <div className="featuredMoneyContainer">
+            <span className="featuredMoney">
+              {numberWithCommas(income.currentMonth)}₫
+            </span>
+            <span className="featuredMoneyRate">
+              {income.currentMonth > income.lastMonth ? (
+                <>
+                  +{numberWithCommas(income.currentMonth - income.lastMonth)}₫{' '}
+                  <ArrowUpward className="featuredIcon" />
+                </>
+              ) : (
+                <>
+                  -{numberWithCommas(income.lastMonth - income.currentMonth)}₫{' '}
+                  <ArrowDownward className="featuredIcon negative" />
+                </>
+              )}
+            </span>
+          </div>
+        )}
+        <span className="featuredSub">Compared to last month</span>
+      </div>
+
+      <div className="featuredItem">
         <span className="featuredTitle">Transactions</span>
         {transactions && (
           <div className="featuredMoneyContainer">
@@ -65,43 +90,6 @@ export default function FeaturedInfo() {
               ) : (
                 <>
                   {quantitySold.currentMonth - quantitySold.lastMonth}{' '}
-                  <ArrowDownward className="featuredIcon negative" />
-                </>
-              )}
-            </span>
-          </div>
-        )}
-        <span className="featuredSub">Compared to last month</span>
-      </div>
-
-      <div className="featuredItem">
-        <span className="featuredTitle">Income</span>
-        {income && (
-          <div className="featuredMoneyContainer">
-            <span className="featuredMoney">
-              {numberWithCommas(income.currentMonth)}₫
-            </span>
-            <span className="featuredMoneyRate">
-              {income.currentMonth > income.lastMonth ? (
-                <>
-                  %
-                  {Math.round(
-                    ((income.currentMonth - income.lastMonth) /
-                      income.lastMonth) *
-                      100 *
-                      100
-                  ) / 100}{' '}
-                  <ArrowUpward className="featuredIcon" />
-                </>
-              ) : (
-                <>
-                  %
-                  {Math.round(
-                    ((income.lastMonth - income.currentMonth) /
-                      income.lastMonth) *
-                      100 *
-                      100
-                  ) / 100}{' '}
                   <ArrowDownward className="featuredIcon negative" />
                 </>
               )}

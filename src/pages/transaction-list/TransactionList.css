@@ -1,0 +1,45 @@
+.transactionList {
+  flex: 4;
+}
+
+.transactionListTitleContainer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px;
+}
+
+.transactionStatus {
+  border: none;
+  border-radius: 10px;
+  padding: 7px 10px;
+  cursor: default;
+}
+
+.transactionStatus.delivered {
+  background-color: #e5faf2;
+  color: #3bb077;
+}
+.transactionStatus.preparing_shipment {
+  background-color: #dae4f7;
+  color: #2a72de;
+}
+.transactionStatus.processing {
+  background-color: #eeeef7;
+  color: #555555;
+}
+
+.transactionStatusIcon {
+  font-size: 16px !important;
+  margin-right: 5px;
+}
+
+.btnShowTransactionDetail {
+  border: none;
+  border-radius: 10px;
+  padding: 5px 10px;
+  background-color: #3bb077;
+  color: white;
+  cursor: pointer;
+  margin-right: 20px;
+}

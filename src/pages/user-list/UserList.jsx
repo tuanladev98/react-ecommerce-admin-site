@@ -51,12 +51,30 @@ export default function UserList() {
       field: 'gender',
       headerName: 'Gender',
       width: 120,
+      renderCell: (params) => {
+        return params.row.gender === 'MALE' ? (
+          <div>
+            <span className="userGender male">Man</span>
+          </div>
+        ) : (
+          <div>
+            <span className="userGender female">Woman</span>
+          </div>
+        );
+      },
     },
-    // {
-    //   field: 'transaction',
-    //   headerName: 'Transaction Volume',
-    //   width: 160,
-    // },
+    {
+      field: 'transaction',
+      headerName: 'Transactions',
+      width: 160,
+      renderCell: (params) => {
+        return params.row.orders.length > 0 ? (
+          <span>{params.row.orders.length}</span>
+        ) : (
+          <span>No transactions</span>
+        );
+      },
+    },
     {
       field: 'action',
       headerName: 'Action',

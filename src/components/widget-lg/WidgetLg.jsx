@@ -1,4 +1,3 @@
-import { format as formatTimeAgo } from 'timeago.js';
 import {
   Archive,
   Brightness5,
@@ -6,6 +5,8 @@ import {
   Visibility,
   VisibilityOff,
 } from '@material-ui/icons';
+import { Link } from 'react-router-dom';
+import dayjs from 'dayjs';
 
 import './WidgetLg.css';
 
@@ -30,10 +31,13 @@ export default function WidgetLg(props) {
               <td className="widgetLgCode">
                 <span>{transaction.orderCode}</span>
               </td>
+
               <td className="widgetLgUser">{transaction.user.name}</td>
+
               <td className="widgetLgDate">
-                {formatTimeAgo(transaction.createdAt)}
+                {dayjs(transaction.createdAt).format('DD-MM-YYYY HH:mm')}
               </td>
+
               <td className="widgetLgAmount">
                 {!transaction.stripeSucceededPaymentIntentId ? (
                   <span className="paymentStatus unpaid">
@@ -45,6 +49,7 @@ export default function WidgetLg(props) {
                   </span>
                 )}
               </td>
+
               <td className="widgetLgStatus">
                 {transaction.status === 'PROCESSING' && (
                   <span className="widgetLgStatusBtn processing">
@@ -67,11 +72,14 @@ export default function WidgetLg(props) {
                   </span>
                 )}
               </td>
+
               <td className="widgetLgDetail">
                 {transaction.stripeSucceededPaymentIntentId ? (
-                  <button className="widgetLgDetailBtn active">
-                    <Visibility />
-                  </button>
+                  <Link to={'/transaction/' + transaction.id}>
+                    <button className="widgetLgDetailBtn active">
+                      <Visibility />
+                    </button>
+                  </Link>
                 ) : (
                   <button className="widgetLgDetailBtn disable">
                     <VisibilityOff />

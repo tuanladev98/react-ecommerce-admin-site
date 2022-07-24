@@ -71,14 +71,16 @@ export default function SideBar() {
                 Products
               </li>
             </Link>
-            <li
-              className={`sidebarListItem ${
-                activeMenu === 'TRANSACTION' ? 'active' : ''
-              }`}
-            >
-              <AttachMoney className="sidebarIcon" />
-              Transactions
-            </li>
+            <Link to="/transaction" className="link">
+              <li
+                className={`sidebarListItem ${
+                  activeMenu === 'TRANSACTION' ? 'active' : ''
+                }`}
+              >
+                <AttachMoney className="sidebarIcon" />
+                Transactions
+              </li>
+            </Link>
             <li
               className={`sidebarListItem ${
                 activeMenu === 'REPORT' ? 'active' : ''

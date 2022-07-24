@@ -7,17 +7,19 @@ import {
 
 import './App.css';
 
+import SideBar from './components/side-bar/SideBar';
+import TopBar from './components/top-bar/TopBar';
 import Home from './pages/home/Home';
 import UserList from './pages/user-list/UserList';
 import User from './pages/user/User';
-import NewUser from './pages/new-user/NewUser';
+// import NewUser from './pages/new-user/NewUser';
 import ProductList from './pages/product-list/ProductList';
 import Product from './pages/product/Product';
 import NewProduct from './pages/new-product/NewProduct';
 import Login from './pages/login/Login';
-import SideBar from './components/side-bar/SideBar';
-import TopBar from './components/top-bar/TopBar';
 import ChatBox from './pages/chat-box/ChatBox';
+import TransactionList from './pages/transaction-list/TransactionList';
+
 import { socket, SocketContext } from './socket/socketContext';
 
 function App() {
@@ -39,18 +41,21 @@ function App() {
               <Route exact path="/">
                 <Home />
               </Route>
+
               <Route path="/support-user">
                 <ChatBox />
               </Route>
+
               <Route exact path="/user">
                 <UserList />
               </Route>
               <Route path="/user/:userId">
                 <User />
               </Route>
-              <Route path="/new-user">
+              {/* <Route path="/new-user">
                 <NewUser />
-              </Route>
+              </Route> */}
+
               <Route exact path="/product">
                 <ProductList />
               </Route>
@@ -59,6 +64,10 @@ function App() {
               </Route>
               <Route path="/new-product">
                 <NewProduct />
+              </Route>
+
+              <Route exact path="/transaction">
+                <TransactionList />
               </Route>
             </div>
           </SocketContext.Provider>

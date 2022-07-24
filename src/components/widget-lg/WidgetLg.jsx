@@ -1,15 +1,17 @@
 import { format as formatTimeAgo } from 'timeago.js';
-import { Visibility } from '@material-ui/icons';
+import {
+  Archive,
+  Brightness5,
+  LocalShipping,
+  Visibility,
+  VisibilityOff,
+} from '@material-ui/icons';
 
 import './WidgetLg.css';
 
 import numberWithCommas from '../../utils/numberWithCommas';
 
 export default function WidgetLg(props) {
-  const Button = ({ type }) => {
-    return <button className={'widgetLgButton ' + type}>{type}</button>;
-  };
-
   return (
     <div className="widgetLg">
       <h3 className="widgetLgTitle">{props.tableTitle}</h3>
@@ -28,28 +30,53 @@ export default function WidgetLg(props) {
               <td className="widgetLgCode">
                 <span>{transaction.orderCode}</span>
               </td>
-              <td className="widgetLgUser">
-                <img
-                  src="https://crowd-literature.eu/wp-content/uploads/2015/01/no-avatar.gif"
-                  alt=""
-                  className="widgetLgImg"
-                />
-                <span className="widgetLgName">{transaction.user.name}</span>
-              </td>
+              <td className="widgetLgUser">{transaction.user.name}</td>
               <td className="widgetLgDate">
                 {formatTimeAgo(transaction.createdAt)}
               </td>
               <td className="widgetLgAmount">
-                {numberWithCommas(transaction.amount)}₫
+                {!transaction.stripeSucceededPaymentIntentId ? (
+                  <span className="paymentStatus unpaid">
+                    Unpaid - {numberWithCommas(transaction.amount)}₫
+                  </span>
+                ) : (
+                  <span className="paymentStatus paid">
+                    Paid - {numberWithCommas(transaction.amount)}₫
+                  </span>
+                )}
               </td>
               <td className="widgetLgStatus">
-                <Button type="Approved" />
+                {transaction.status === 'PROCESSING' && (
+                  <span className="widgetLgStatusBtn processing">
+                    <Brightness5 className="widgetLgStatusIcon" />
+                    Processing
+                  </span>
+                )}
+
+                {transaction.status === 'PREPARING_SHIPMENT' && (
+                  <span className="widgetLgStatusBtn preparing_shipment">
+                    <Archive className="widgetLgStatusIcon" />
+                    Preparing
+                  </span>
+                )}
+
+                {transaction.status === 'DELIVERED' && (
+                  <span className="widgetLgStatusBtn delivered">
+                    <LocalShipping className="widgetLgStatusIcon" />
+                    Delivered
+                  </span>
+                )}
               </td>
               <td className="widgetLgDetail">
-                <button className="widgetLgDetailBtn">
-                  <Visibility className="widgetLgDetailIcon" />
-                  Details
-                </button>
+                {transaction.stripeSucceededPaymentIntentId ? (
+                  <button className="widgetLgDetailBtn active">
+                    <Visibility />
+                  </button>
+                ) : (
+                  <button className="widgetLgDetailBtn disable">
+                    <VisibilityOff />
+                  </button>
+                )}
               </td>
             </tr>
           );

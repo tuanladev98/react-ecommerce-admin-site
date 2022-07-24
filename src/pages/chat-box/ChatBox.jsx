@@ -119,6 +119,12 @@ export default function ChatBox() {
     setTextMessageInput(null);
   };
 
+  const handleKeyDown = (e) => {
+    if (e.keyCode === 13 && !e.shiftKey) {
+      return handleSendMessage(e);
+    }
+  };
+
   const handleSendMessage = (e) => {
     e.preventDefault();
     if (textMessageInput)
@@ -237,6 +243,7 @@ export default function ChatBox() {
                 value={!textMessageInput ? '' : textMessageInput}
                 onChange={(e) => setTextMessageInput(e.target.value)}
                 onFocus={handleAdminSeen}
+                onKeyDown={handleKeyDown}
               ></textarea>
             </div>
             <div

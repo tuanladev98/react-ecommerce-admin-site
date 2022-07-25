@@ -5,10 +5,12 @@ import { toast } from 'react-toastify';
 import './NewProduct.css';
 
 import categoryApis from '../../api/category.api';
+import sizeApis from '../../api/size.api';
 import productApis from '../../api/product.api';
 
 export default function NewProduct() {
-  const [categories, setCategories] = useState([]);
+  const [categoryData, setCategoryData] = useState([]);
+  const [sizeData, setSizeData] = useState([]);
 
   // data state:
   const [categoryId, setCategoryId] = useState(null);
@@ -18,11 +20,17 @@ export default function NewProduct() {
   const [description, setDescription] = useState('');
   const [image01, setImage01] = useState(null);
   const [image02, setImage02] = useState(null);
-  const [listSize, setListSize] = useState([]);
+  const [sizeIds, setSizeIds] = useState([]);
 
   useEffect(() => {
     categoryApis.getAllCategory().then((result) => {
-      setCategories(result.data);
+      setCategoryData(result.data);
+    });
+  }, []);
+
+  useEffect(() => {
+    sizeApis.getAllSize().then((result) => {
+      setSizeData(result.data);
     });
   }, []);
 
@@ -51,7 +59,7 @@ export default function NewProduct() {
         description,
         image01,
         image02,
-        listSize,
+        sizeIds,
       })
       .then((result) => {
         toast.error('Create success!');
@@ -74,7 +82,8 @@ export default function NewProduct() {
             price === 0 ||
             !gender ||
             !image01 ||
-            !image02
+            !image02 ||
+            sizeIds.length === 0
           }
           onClick={handleSaveProduct}
         >
@@ -93,7 +102,7 @@ export default function NewProduct() {
               <option value={null} selected disabled>
                 -- Select category --
               </option>
-              {categories.map((ele) => {
+              {categoryData.map((ele) => {
                 return (
                   <option value={ele.id} key={ele.id}>
                     {ele.categoryName}
@@ -102,6 +111,7 @@ export default function NewProduct() {
               })}
             </select>
           </div>
+
           <div className="addProductItem">
             <label>Product Name*</label>
             <input
@@ -110,6 +120,7 @@ export default function NewProduct() {
               onChange={(e) => setProductName(e.target.value)}
             />
           </div>
+
           <div className="addProductItem">
             <label>Price*</label>
             <input
@@ -120,6 +131,7 @@ export default function NewProduct() {
               onChange={(e) => setPrice(e.target.value)}
             />
           </div>
+
           <div className="addProductItem">
             <label>Gender*</label>
             <select
@@ -131,6 +143,7 @@ export default function NewProduct() {
               <option value="FEMALE">Woman</option>
             </select>
           </div>
+
           <div className="addProductItem">
             <label>Description</label>
             <textarea
@@ -141,6 +154,7 @@ export default function NewProduct() {
               onChange={(e) => setDescription(e.target.value)}
             ></textarea>
           </div>
+
           <div className="addProductItem">
             <label>Image 1*</label>
             <div className="productUploadImage">
@@ -163,6 +177,7 @@ export default function NewProduct() {
               />
             </div>
           </div>
+
           <div className="addProductItem">
             <label>Image 2*</label>
             <div className="productUploadImage">
@@ -186,6 +201,7 @@ export default function NewProduct() {
             </div>
           </div>
         </div>
+
         <div className="addProductSize">
           <span>List sizes</span>
           <div className="addListSize">

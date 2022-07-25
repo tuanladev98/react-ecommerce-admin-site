@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Cancel, Publish } from '@material-ui/icons';
+import { toast } from 'react-toastify';
 
 import './NewProduct.css';
 
@@ -53,11 +54,11 @@ export default function NewProduct() {
         listSize,
       })
       .then((result) => {
-        alert('Create success!');
+        toast.error('Create success!');
         window.location.href = '/product/' + result.data.id;
       })
       .catch((error) => {
-        alert('Create fail!');
+        toast.error('Create fail!');
       });
   };
 

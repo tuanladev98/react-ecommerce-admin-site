@@ -3,6 +3,7 @@ import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { Send } from '@material-ui/icons';
 import * as dayjs from 'dayjs';
+import { toast } from 'react-toastify';
 
 import './ChatBox.css';
 
@@ -112,7 +113,7 @@ export default function ChatBox() {
         })
         .catch((error) => {
           console.log(error);
-          alert('error get history messages');
+          toast.error('error get history messages');
         });
     }
     setActiveConversation(convData);

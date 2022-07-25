@@ -3,6 +3,7 @@ import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { DataGrid } from '@material-ui/data-grid';
 import { DeleteOutline } from '@material-ui/icons';
+import { toast } from 'react-toastify';
 
 import './ProductList.css';
 
@@ -42,7 +43,7 @@ export default function ProductList() {
             setProductData([]);
           });
       })
-      .catch((error) => alert('Delete fail!'));
+      .catch((error) => toast.error('Delete fail!'));
   };
 
   const columns = [

@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { toast } from 'react-toastify';
 
 import './Login.css';
 import authApis from '../../api/auth.api';
@@ -25,8 +26,8 @@ const Login = () => {
 
   const handleLogin = (e) => {
     e.preventDefault();
-    if (!email) alert('Please input email!');
-    else if (!password) alert('Please input password!');
+    if (!email) toast.error('Please input email!');
+    else if (!password) toast.error('Please input password!');
     else {
       // login
       const login = async (dispatch, email, password) => {
@@ -34,7 +35,7 @@ const Login = () => {
         try {
           const loginResult = await authApis.login(email, password);
           if (loginResult.data.userInfo.role !== 'ADMIN') {
-            alert('You are not admin!');
+            toast.error('You are not admin!');
             dispatch(loginFailure());
           } else {
             dispatch(loginSuccess(loginResult.data));

@@ -7,18 +7,18 @@ import statsApis from '../../api/stats.api';
 
 export default function FeaturedInfo() {
   const [transactions, setTransactions] = useState(null);
-  const [quantitySold, setQuantitySold] = useState(null);
+  const [loginQuantity, setLoginQuantity] = useState(null);
   const [income, setIncome] = useState(null);
 
   useEffect(() => {
     statsApis
       .getStatsSummary()
       .then((result) => {
-        const { transactionSummary, quantitySummary, incomeSummary } =
+        const { transactionSummary, loginQuantitySummary, incomeSummary } =
           result.data;
 
         setTransactions(transactionSummary);
-        setQuantitySold(quantitySummary);
+        setLoginQuantity(loginQuantitySummary);
         setIncome(incomeSummary);
       })
       .catch((error) => {
@@ -36,7 +36,7 @@ export default function FeaturedInfo() {
               {numberWithCommas(income.currentMonth)}₫
             </span>
             <span className="featuredMoneyRate">
-              {income.currentMonth > income.lastMonth ? (
+              {income.currentMonth >= income.lastMonth ? (
                 <>
                   +{numberWithCommas(income.currentMonth - income.lastMonth)}₫{' '}
                   <ArrowUpward className="featuredIcon" />
@@ -59,7 +59,7 @@ export default function FeaturedInfo() {
           <div className="featuredMoneyContainer">
             <span className="featuredMoney">{transactions.currentMonth}</span>
             <span className="featuredMoneyRate">
-              {transactions.currentMonth > transactions.lastMonth ? (
+              {transactions.currentMonth >= transactions.lastMonth ? (
                 <>
                   +{transactions.currentMonth - transactions.lastMonth}{' '}
                   <ArrowUpward className="featuredIcon" />
@@ -77,19 +77,19 @@ export default function FeaturedInfo() {
       </div>
 
       <div className="featuredItem">
-        <span className="featuredTitle">Quantity Sold</span>
-        {quantitySold && (
+        <span className="featuredTitle">Login Quantity</span>
+        {loginQuantity && (
           <div className="featuredMoneyContainer">
-            <span className="featuredMoney">{quantitySold.currentMonth}</span>
+            <span className="featuredMoney">{loginQuantity.currentMonth}</span>
             <span className="featuredMoneyRate">
-              {quantitySold.currentMonth > quantitySold.lastMonth ? (
+              {loginQuantity.currentMonth >= loginQuantity.lastMonth ? (
                 <>
-                  +{quantitySold.currentMonth - quantitySold.lastMonth}{' '}
+                  +{loginQuantity.currentMonth - loginQuantity.lastMonth}{' '}
                   <ArrowUpward className="featuredIcon" />
                 </>
               ) : (
                 <>
-                  {quantitySold.currentMonth - quantitySold.lastMonth}{' '}
+                  {loginQuantity.currentMonth - loginQuantity.lastMonth}{' '}
                   <ArrowDownward className="featuredIcon negative" />
                 </>
               )}

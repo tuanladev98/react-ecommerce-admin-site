@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Cancel, Publish } from '@material-ui/icons';
+import { Publish } from '@material-ui/icons';
 import { toast } from 'react-toastify';
 
 import './NewProduct.css';
@@ -74,156 +74,152 @@ export default function NewProduct() {
     <div className="newProduct">
       <div className="addProductTitleContainer">
         <h1 className="addProductTitle">New Product</h1>
-        <button
-          className="addProductButton"
-          disabled={
-            !categoryId ||
-            !productName ||
-            price === 0 ||
-            !gender ||
-            !image01 ||
-            !image02 ||
-            sizeIds.length === 0
-          }
-          onClick={handleSaveProduct}
-        >
-          Save
-        </button>
       </div>
       <div className="addProductContainer">
         <div className="addProductForm">
-          <div className="addProductItem">
-            <label>Category*</label>
-            <select
-              name="category"
-              id="category"
-              onChange={(e) => setCategoryId(e.target.value)}
-            >
-              <option value={null} selected disabled>
-                -- Select category --
-              </option>
-              {categoryData.map((ele) => {
-                return (
-                  <option value={ele.id} key={ele.id}>
-                    {ele.categoryName}
-                  </option>
-                );
-              })}
-            </select>
-          </div>
+          <div className="addProductFormTextFields">
+            <div className="addProductItem">
+              <label>Category*:</label>
+              <select
+                name="category"
+                id="category"
+                onChange={(e) => setCategoryId(e.target.value)}
+              >
+                <option value={null} selected disabled>
+                  -- Select category --
+                </option>
+                {categoryData.map((ele) => {
+                  return (
+                    <option value={ele.id} key={ele.id}>
+                      {ele.categoryName}
+                    </option>
+                  );
+                })}
+              </select>
+            </div>
 
-          <div className="addProductItem">
-            <label>Product Name*</label>
-            <input
-              type="text"
-              placeholder="Enter name..."
-              onChange={(e) => setProductName(e.target.value)}
-            />
-          </div>
-
-          <div className="addProductItem">
-            <label>Price*</label>
-            <input
-              type="number"
-              placeholder="Enter price..."
-              min={0}
-              defaultValue={1000000}
-              onChange={(e) => setPrice(e.target.value)}
-            />
-          </div>
-
-          <div className="addProductItem">
-            <label>Gender*</label>
-            <select
-              name="gender"
-              id="gender"
-              onChange={(e) => setGender(e.target.value)}
-            >
-              <option value="MALE">Men</option>
-              <option value="FEMALE">Woman</option>
-            </select>
-          </div>
-
-          <div className="addProductItem">
-            <label>Description</label>
-            <textarea
-              type="text"
-              rows={4}
-              placeholder="Enter description..."
-              defaultValue={''}
-              onChange={(e) => setDescription(e.target.value)}
-            ></textarea>
-          </div>
-
-          <div className="addProductItem">
-            <label>Image 1*</label>
-            <div className="productUploadImage">
-              <img
-                src={
-                  !image01
-                    ? 'https://bytesbin.com/wp-content/uploads/How_to_Upload_File_to_iCloud_com-930x620.png'
-                    : image01
-                }
-                alt=""
-              />
-              <label for="fileImage01">
-                <Publish />
-              </label>
+            <div className="addProductItem">
+              <label>Product name*:</label>
               <input
-                type="file"
-                id="fileImage01"
-                style={{ display: 'none' }}
-                onChange={handleUploadImage01}
+                type="text"
+                placeholder="Enter name..."
+                onChange={(e) => setProductName(e.target.value)}
               />
+            </div>
+
+            <div className="addProductItem">
+              <label>Price*</label>
+              <input
+                type="number"
+                placeholder="Enter price..."
+                min={0}
+                defaultValue={1000000}
+                onChange={(e) => setPrice(e.target.value)}
+              />
+            </div>
+
+            <div className="addProductItem">
+              <label>Gender*:</label>
+              <select
+                name="gender"
+                id="gender"
+                onChange={(e) => setGender(e.target.value)}
+              >
+                <option value="MALE">Men</option>
+                <option value="FEMALE">Woman</option>
+              </select>
+            </div>
+
+            <div className="addProductItem">
+              <label>Description:</label>
+              <textarea
+                type="text"
+                rows={7}
+                placeholder="Enter description..."
+                defaultValue={''}
+                onChange={(e) => setDescription(e.target.value)}
+              ></textarea>
             </div>
           </div>
 
-          <div className="addProductItem">
-            <label>Image 2*</label>
-            <div className="productUploadImage">
-              <img
-                src={
-                  !image02
-                    ? 'https://bytesbin.com/wp-content/uploads/How_to_Upload_File_to_iCloud_com-930x620.png'
-                    : image02
-                }
-                alt=""
-              />
-              <label for="fileImage02">
-                <Publish />
-              </label>
-              <input
-                type="file"
-                id="fileImage02"
-                style={{ display: 'none' }}
-                onChange={handleUploadImage02}
-              />
+          <div className="addProductFormImgAndSizesFields">
+            <div className="uploadImageProduct">
+              <div className="addProductItem">
+                <label>Image 1*:</label>
+                <div className="productUploadImage">
+                  <img
+                    src={
+                      !image01
+                        ? 'https://bytesbin.com/wp-content/uploads/How_to_Upload_File_to_iCloud_com-930x620.png'
+                        : image01
+                    }
+                    alt=""
+                  />
+                  <label htmlFor="fileImage01">
+                    <Publish />
+                  </label>
+                  <input
+                    type="file"
+                    id="fileImage01"
+                    style={{ display: 'none' }}
+                    onChange={handleUploadImage01}
+                  />
+                </div>
+              </div>
+
+              <div className="addProductItem">
+                <label>Image 2*:</label>
+                <div className="productUploadImage">
+                  <img
+                    src={
+                      !image02
+                        ? 'https://bytesbin.com/wp-content/uploads/How_to_Upload_File_to_iCloud_com-930x620.png'
+                        : image02
+                    }
+                    alt=""
+                  />
+                  <label htmlFor="fileImage02">
+                    <Publish />
+                  </label>
+                  <input
+                    type="file"
+                    id="fileImage02"
+                    style={{ display: 'none' }}
+                    onChange={handleUploadImage02}
+                  />
+                </div>
+              </div>
+            </div>
+
+            <div className="addAvailableSizes">
+              <label>Setting sizes:</label>
+              <div className="listSize">
+                {sizeIds.map((item, index) => {
+                  return (
+                    <div className={'sizeOption'} key={item.id}>
+                      <span>{item.euSize}</span>
+                    </div>
+                  );
+                })}
+              </div>
             </div>
           </div>
         </div>
 
-        <div className="addProductSize">
-          <span>List sizes</span>
-          <div className="addListSize">
-            <div className="sizeItem">
-              <span className="sizeItemTitle">Size: {24}</span>
-              <div className="sizeItemQuantity">
-                <span>Quantity: </span>
-                <input type="number" min={1} defaultValue={10} />
-              </div>
-              <div className="deleteSizeItem">
-                <Cancel />
-              </div>
-            </div>
-            <div className="addSizeItem">
-              <div className="addSizeItemSelect">
-                <span>Select size:</span>
-                <select name="">
-                  <option>dddd</option>
-                </select>
-              </div>
-            </div>
-          </div>
+        <div className="addProductButton">
+          <button
+            disabled={
+              !categoryId ||
+              !productName ||
+              !price ||
+              !gender ||
+              !image01 ||
+              !image02
+            }
+            onClick={handleSaveProduct}
+          >
+            Save
+          </button>
         </div>
       </div>
     </div>

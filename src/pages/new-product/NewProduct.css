@@ -9,60 +9,75 @@
   padding: 20px;
 }
 
-.addProductButton {
-  margin-right: 20px;
-  padding: 7px 10px;
-  border: none;
-  border-radius: 5px;
-  background-color: rgb(7, 211, 24);
-  color: white;
-  font-weight: 600;
-  cursor: pointer;
-}
-
-.addProductButton:disabled {
-  background-color: lightgray;
-  color: black;
-  font-weight: 600;
-  cursor: not-allowed;
-}
-
 .addProductContainer {
-  margin: 10px;
-  display: flex;
-}
-
-.addProductForm {
-  flex: 1;
-  margin: 10px;
-  padding: 20px;
+  margin: 0px 40px;
   -webkit-box-shadow: 0px 0px 15px -10px rgba(0, 0, 0, 0.75);
   box-shadow: 0px 0px 15px -10px rgba(0, 0, 0, 0.75);
 }
 
+.addProductForm {
+  display: flex;
+}
+
+.addProductFormTextFields {
+  flex: 1;
+  margin: 10px;
+  padding: 30px;
+}
+
 .addProductItem {
-  width: 400px;
+  width: 100%;
   display: flex;
   flex-direction: column;
   margin-bottom: 10px;
 }
 
 .addProductItem > label {
-  color: gray;
+  color: rgb(46, 46, 46);
   font-weight: 600;
   margin-bottom: 10px;
 }
 
 .addProductItem > input {
+  height: 30px;
   padding: 5px;
+  border: 1px solid lightgray;
+  border-radius: 5px;
 }
 
 .addProductItem > textarea {
   padding: 5px;
+  border: 1px solid lightgray;
+  border-radius: 5px;
 }
 
 .addProductItem > select {
+  height: 40px;
   padding: 5px;
+  border: 1px solid lightgray;
+  border-radius: 5px;
+  background-color: white;
+}
+
+/* .addProductItem > input,
+textarea,
+select:focus {
+  outline: none;
+  border-color: rgb(97, 97, 219);
+} */
+
+.addProductFormImgAndSizesFields {
+  flex: 1;
+  margin: 10px;
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+}
+
+.uploadImageProduct {
+  flex: 1;
+  display: flex;
+  justify-content: space-between;
 }
 
 .productUploadImage {
@@ -72,8 +87,8 @@
 
 .productUploadImage > img {
   border: 1px dashed lightgray;
-  width: 100px;
-  height: 100px;
+  width: 200px;
+  height: 200px;
   border-radius: 10px;
   object-fit: contain;
   margin-right: 20px;
@@ -83,79 +98,68 @@
   cursor: pointer;
 }
 
-.addProductSize {
+.addAvailableSizes {
   flex: 1;
-  margin: 10px;
-  padding: 20px;
-  -webkit-box-shadow: 0px 0px 15px -10px rgba(0, 0, 0, 0.75);
-  box-shadow: 0px 0px 15px -10px rgba(0, 0, 0, 0.75);
-  height: fit-content;
+  margin: 20px 0px;
 }
 
-.addProductSize > span {
-  color: gray;
+.addAvailableSizes > label {
+  color: rgb(46, 46, 46);
   font-weight: 600;
   margin-bottom: 10px;
 }
 
-.addListSize {
-  /* margin: 10px; */
-  padding: 20px;
-  width: 350px;
+.listSize {
+  margin-top: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
 }
 
-.sizeItem {
-  margin: 10px;
-  padding: 3px;
+.sizeOption {
+  width: 45px;
+  height: 20px;
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  background-color: rgb(240, 240, 240);
-  border-radius: 10px;
-  border: 1px dashed rgb(2, 189, 2);
-}
-
-.sizeItemTitle {
-  padding: 0px 10px;
-}
-
-.sizeItemQuantity {
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-}
-
-.sizeItemQuantity > input {
-  margin: 0 10px;
-  width: 30px;
-  border: none;
-  background-color: rgb(240, 240, 240);
-}
-
-.deleteSizeItem {
-  color: red;
-  padding: 0px 10px;
-  display: flex;
   justify-content: center;
-  align-items: center;
+  padding: 5px 10px;
+  border: 1px dashed black;
+  border-radius: 5px;
+  margin: 5px 5px;
   cursor: pointer;
 }
 
-.addSizeItem {
-  margin: 10px;
-  padding: 3px;
+.sizeOption:hover {
+  background-color: black;
+  color: white;
+}
+
+.sizeOption.active {
+  background-color: black;
+  color: white;
+}
+
+.addProductButton {
+  /* margin: 10px; */
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
-  background-color: rgb(240, 240, 240);
-  border-radius: 10px;
-  border: 1px dashed lightgray;
 }
 
-.addSizeItem:hover {
-  border: 1px dashed rgb(2, 189, 2);
+.addProductButton > button {
+  margin-bottom: 20px;
+  padding: 7px 10px;
+  border: none;
+  border-radius: 5px;
+  background-color: rgb(7, 211, 24);
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
 }
 
-.addSizeItemSelect {
-  padding: 0px 10px;
+.addProductButton > button:disabled {
+  background-color: lightgray;
+  color: black;
+  font-weight: 600;
+  cursor: not-allowed;
 }

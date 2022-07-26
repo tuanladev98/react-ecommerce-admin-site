@@ -155,6 +155,7 @@ export default function ChatBox() {
                     ? 'conversation active'
                     : 'conversation'
                 }
+                key={conv.id}
                 onClick={() => handleClickConversation(conv)}
               >
                 <div
@@ -222,6 +223,7 @@ export default function ChatBox() {
                   className={`messageElement ${
                     message.sender === 'ADMIN' ? 'sentMessage' : 'incomeMessage'
                   }`}
+                  key={message.id}
                 >
                   <div className="messageMain">
                     <div className="messageContent">{message.text}</div>

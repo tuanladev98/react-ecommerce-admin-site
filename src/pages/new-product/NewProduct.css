@@ -151,8 +151,9 @@ select:focus {
   padding: 7px 10px;
   border: none;
   border-radius: 5px;
-  background-color: rgb(7, 211, 24);
+  background-color: darkblue;
   color: white;
+  text-transform: uppercase;
   font-weight: 600;
   cursor: pointer;
 }
@@ -160,6 +161,5 @@ select:focus {
 .addProductButton > button:disabled {
   background-color: lightgray;
   color: black;
-  font-weight: 600;
   cursor: not-allowed;
 }

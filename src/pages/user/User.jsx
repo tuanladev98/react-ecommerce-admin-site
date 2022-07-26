@@ -17,8 +17,8 @@ import { changeMenu } from '../../redux/side_bar_slice';
 
 export default function User() {
   const location = useLocation();
-  const dispatch = useDispatch();
   const userId = location.pathname.split('/')[2];
+  const dispatch = useDispatch();
   const [user, setUser] = useState(null);
 
   useEffect(() => {

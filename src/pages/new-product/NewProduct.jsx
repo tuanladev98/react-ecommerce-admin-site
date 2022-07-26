@@ -62,12 +62,21 @@ export default function NewProduct() {
         sizeIds,
       })
       .then((result) => {
-        toast.error('Create success!');
+        toast.success('Create success!');
         window.location.href = '/product/' + result.data.id;
       })
       .catch((error) => {
         toast.error('Create fail!');
       });
+  };
+
+  const handleSelectSizes = (sizeId) => {
+    // e.preventDefault();
+    let tempSizeIds = new Set([...sizeIds]);
+    if (tempSizeIds.has(sizeId)) tempSizeIds.delete(sizeId);
+    else tempSizeIds.add(sizeId);
+
+    setSizeIds([...tempSizeIds]);
   };
 
   return (
@@ -134,7 +143,7 @@ export default function NewProduct() {
               <label>Description:</label>
               <textarea
                 type="text"
-                rows={7}
+                rows={5}
                 placeholder="Enter description..."
                 defaultValue={''}
                 onChange={(e) => setDescription(e.target.value)}
@@ -192,11 +201,19 @@ export default function NewProduct() {
             </div>
 
             <div className="addAvailableSizes">
-              <label>Setting sizes:</label>
+              <label>Select available sizes:</label>
               <div className="listSize">
-                {sizeIds.map((item, index) => {
+                {sizeData.map((item, index) => {
                   return (
-                    <div className={'sizeOption'} key={item.id}>
+                    <div
+                      className={
+                        sizeIds.includes(item.id)
+                          ? 'sizeOption active'
+                          : 'sizeOption'
+                      }
+                      key={item.id}
+                      onClick={() => handleSelectSizes(item.id)}
+                    >
                       <span>{item.euSize}</span>
                     </div>
                   );

@@ -77,7 +77,7 @@ export default function FeaturedInfo() {
       </div>
 
       <div className="featuredItem">
-        <span className="featuredTitle">Login Quantity</span>
+        <span className="featuredTitle">Access times</span>
         {loginQuantity && (
           <div className="featuredMoneyContainer">
             <span className="featuredMoney">{loginQuantity.currentMonth}</span>

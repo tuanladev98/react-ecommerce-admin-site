@@ -19,6 +19,7 @@ import NewProduct from './pages/new-product/NewProduct';
 import Login from './pages/login/Login';
 import ChatBox from './pages/chat-box/ChatBox';
 import TransactionList from './pages/transaction-list/TransactionList';
+import Transaction from './pages/transaction/Transaction';
 
 import { socket, SocketContext } from './socket/socketContext';
 
@@ -68,6 +69,9 @@ function App() {
 
               <Route exact path="/transaction">
                 <TransactionList />
+              </Route>
+              <Route path="/transaction/:orderId">
+                <Transaction />
               </Route>
             </div>
           </SocketContext.Provider>

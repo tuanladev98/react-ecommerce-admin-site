@@ -1,14 +1,8 @@
 import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { DataGrid } from '@material-ui/data-grid';
-
-import './TransactionList.css';
-
-import orderApis from '../../api/order.api';
-import { changeMenu } from '../../redux/side_bar_slice';
 import dayjs from 'dayjs';
-import numberWithCommas from '../../utils/numberWithCommas';
+import { DataGrid } from '@material-ui/data-grid';
 import {
   Archive,
   Brightness5,
@@ -16,6 +10,12 @@ import {
   Visibility,
   VisibilityOff,
 } from '@material-ui/icons';
+
+import './TransactionList.css';
+
+import orderApis from '../../api/order.api';
+import { changeMenu } from '../../redux/side_bar_slice';
+import numberWithCommas from '../../utils/numberWithCommas';
 
 export default function TransactionList() {
   const dispatch = useDispatch();

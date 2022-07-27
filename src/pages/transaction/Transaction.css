@@ -1,0 +1,32 @@
+.transaction {
+  flex: 4;
+}
+
+.transactionTitleContainer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px;
+}
+
+.transactionDetailContainer {
+  margin: 0px 40px;
+  padding: 20px;
+  -webkit-box-shadow: 0px 0px 15px -10px rgba(0, 0, 0, 0.75);
+  box-shadow: 0px 0px 15px -10px rgba(0, 0, 0, 0.75);
+  display: flex;
+}
+
+.processingAndStatus {
+  height: 200px;
+  flex: 1;
+  border: 1px dashed lightgray;
+  margin: 0px 10px;
+}
+
+.orderDetail {
+  height: 200px;
+  flex: 1;
+  border: 1px dashed lightgray;
+  margin: 0px 10px;
+}

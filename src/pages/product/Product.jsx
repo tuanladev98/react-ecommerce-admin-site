@@ -7,12 +7,13 @@ import { toast } from 'react-toastify';
 import './Product.css';
 
 import Chart from '../../components/chart/Chart';
-import { productData } from '../../dummyData';
 import { changeMenu } from '../../redux/side_bar_slice';
 
 import categoryApis from '../../api/category.api';
 import sizeApis from '../../api/size.api';
 import productApis from '../../api/product.api';
+import statsApis from '../../api/stats.api';
+import dayjs from 'dayjs';
 
 export default function Product() {
   const location = useLocation();
@@ -32,6 +33,9 @@ export default function Product() {
   const [image01, setImage01] = useState(null);
   const [image02, setImage02] = useState(null);
   const [sizeIds, setSizeIds] = useState([]);
+
+  // stats state:
+  const [salesPerformanceData, setSalesPerformanceData] = useState([]);
 
   useEffect(() => {
     dispatch(changeMenu('PRODUCT'));
@@ -54,6 +58,22 @@ export default function Product() {
         }
       })
       .catch((error) => setProduct(null));
+  }, [productId]);
+
+  useEffect(() => {
+    statsApis
+      .getStatsProductSalesPerformance(productId)
+      .then((result) => {
+        const data = result.data.map((ele) => {
+          return {
+            name: dayjs().year(ele.year).month(ele.month).format('MMM YYYY'),
+            // name: `${ele.month}`,
+            Sales: !ele.quantity ? 0 : ele.quantity,
+          };
+        });
+        setSalesPerformanceData(data);
+      })
+      .catch((error) => setSalesPerformanceData([]));
   }, [productId]);
 
   useEffect(() => {
@@ -272,7 +292,7 @@ export default function Product() {
         <div className="productStats">
           <div className="productStatsLeft">
             <Chart
-              data={productData}
+              data={salesPerformanceData}
               dataKey="Sales"
               title="Sales Performance"
             />

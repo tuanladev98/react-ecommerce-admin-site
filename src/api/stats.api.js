@@ -24,6 +24,13 @@ const statsApis = {
 
     return result;
   },
+
+  getStatsProductSalesPerformance: (productId) => {
+    const result = createPrivateRequest().get(
+      '/stats/product-sales-performance/' + productId
+    );
+    return result;
+  },
 };
 
 export default statsApis;

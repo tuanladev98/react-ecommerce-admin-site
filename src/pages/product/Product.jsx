@@ -3,6 +3,7 @@ import { useDispatch } from 'react-redux';
 import { Publish } from '@material-ui/icons';
 import { useLocation } from 'react-router-dom';
 import { toast } from 'react-toastify';
+import RatingStars from 'react-rating-stars-component';
 
 import './Product.css';
 
@@ -297,33 +298,34 @@ export default function Product() {
               title="Sales Performance"
             />
           </div>
+
           <div className="productStatsRight">
-            <div className="productInfoTop">
-              <img
-                src="https://images.pexels.com/photos/7156886/pexels-photo-7156886.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500"
-                alt=""
-                className="productInfoImg"
-              />
-              <span className="productName">Apple Airpods</span>
-            </div>
-            <div className="productInfoBottom">
-              <div className="productInfoItem">
-                <span className="productInfoKey">id:</span>
-                <span className="productInfoValue">123</span>
+            <h3>Reviews({product.reviews.length}):</h3>
+            {product.reviews.length ? (
+              <div className="listReviews">
+                {product.reviews.map((review) => {
+                  return (
+                    <div className="review">
+                      <span className="reviewTitle">{review.title}</span>
+                      <RatingStars
+                        count={5}
+                        size={20}
+                        value={review.ratingPoint}
+                        edit={false}
+                      />
+                      <p className="reviewComment">{review.comment}</p>
+                      <span className="reviewDate">
+                        {dayjs(review.createdAt).format('MMMM DD, YYYY HH:mm')}
+                      </span>
+                    </div>
+                  );
+                })}
               </div>
-              <div className="productInfoItem">
-                <span className="productInfoKey">sales:</span>
-                <span className="productInfoValue">5123</span>
+            ) : (
+              <div className="listReviewsEmpty">
+                <span>No reviews</span>
               </div>
-              <div className="productInfoItem">
-                <span className="productInfoKey">active:</span>
-                <span className="productInfoValue">yes</span>
-              </div>
-              <div className="productInfoItem">
-                <span className="productInfoKey">in stock:</span>
-                <span className="productInfoValue">no</span>
-              </div>
-            </div>
+            )}
           </div>
         </div>
 

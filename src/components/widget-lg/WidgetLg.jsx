@@ -50,32 +50,38 @@ export default function WidgetLg(props) {
                 )}
               </td>
 
-              <td className="widgetLgStatus">
-                {transaction.status === 'PROCESSING' && (
-                  <span className="widgetLgStatusBtn processing">
-                    <Brightness5 className="widgetLgStatusIcon" />
-                    Processing
-                  </span>
-                )}
+              {!transaction.stripeSucceededPaymentIntentId ? (
+                <td className="widgetLgStatus">
+                  <span className="widgetLgStatusBtn">Pending...</span>
+                </td>
+              ) : (
+                <td className="widgetLgStatus">
+                  {transaction.status === 'PROCESSING' && (
+                    <span className="widgetLgStatusBtn processing">
+                      <Brightness5 className="widgetLgStatusIcon" />
+                      Processing
+                    </span>
+                  )}
 
-                {transaction.status === 'PREPARING_SHIPMENT' && (
-                  <span className="widgetLgStatusBtn preparing_shipment">
-                    <Archive className="widgetLgStatusIcon" />
-                    Preparing
-                  </span>
-                )}
+                  {transaction.status === 'PREPARING_SHIPMENT' && (
+                    <span className="widgetLgStatusBtn preparing_shipment">
+                      <Archive className="widgetLgStatusIcon" />
+                      Preparing
+                    </span>
+                  )}
 
-                {transaction.status === 'DELIVERED' && (
-                  <span className="widgetLgStatusBtn delivered">
-                    <LocalShipping className="widgetLgStatusIcon" />
-                    Delivered
-                  </span>
-                )}
-              </td>
+                  {transaction.status === 'DELIVERED' && (
+                    <span className="widgetLgStatusBtn delivered">
+                      <LocalShipping className="widgetLgStatusIcon" />
+                      Delivered
+                    </span>
+                  )}
+                </td>
+              )}
 
               <td className="widgetLgDetail">
                 {transaction.stripeSucceededPaymentIntentId ? (
-                  <Link to={'/transaction/' + transaction.id}>
+                  <Link to={'/transaction/' + transaction.orderCode}>
                     <button className="widgetLgDetailBtn active">
                       <Visibility />
                     </button>

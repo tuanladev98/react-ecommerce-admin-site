@@ -70,7 +70,7 @@ function App() {
               <Route exact path="/transaction">
                 <TransactionList />
               </Route>
-              <Route path="/transaction/:orderId">
+              <Route path="/transaction/:orderCode">
                 <Transaction />
               </Route>
             </div>

@@ -12,21 +12,211 @@
 .transactionDetailContainer {
   margin: 0px 40px;
   padding: 20px;
+  display: flex;
+}
+
+.processingAndStatus {
+  flex: 1;
+  height: fit-content;
+  margin: 0px 10px;
+  padding: 10px;
+  -webkit-box-shadow: 0px 0px 15px -10px rgba(0, 0, 0, 0.75);
+  box-shadow: 0px 0px 15px -10px rgba(0, 0, 0, 0.75);
+}
+
+.orderSummaryInfo {
+  padding: 20px;
+  /* border-bottom: 1px solid lightgray; */
+}
+
+.orderCode {
+  font-size: 50px;
+}
+
+.orderInfo {
+  font-weight: 300;
+}
+
+.orderTrackingStatus {
+  padding: 20px 0px;
+  border-bottom: 1px solid lightgray;
+  display: flex;
+  /* justify-content: space-between; */
+  align-items: center;
+}
+
+.trackingStep {
+  display: flex;
+  align-items: center;
+  margin: 0px 10px;
+}
+
+.stepNumber {
+  width: 40px;
+  height: 40px;
+  margin: 0px 10px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #acacac;
+  color: white;
+  font-size: 25px;
+}
+
+.stepNumber.active {
+  background-color: black;
+}
+
+.stepTitle {
+  font-size: 18px;
+  color: #acacac;
+}
+
+.stepTitle.active {
+  color: black;
+}
+
+.shippingProcess {
+  margin-top: 30px;
+  padding: 5px;
+}
+
+.shippingProcessInfo {
+  margin: 10px 0px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.deliveryAndPaymentInfo {
+  flex: 1;
+  margin-right: 20px;
+}
+
+.deliveryAndPaymentInfoPath {
+  display: flex;
+  flex-direction: column;
+  margin-top: 10px;
+}
+
+.infoSpan {
+  font-size: 15px;
+  color: #acacac;
+}
+
+.carrierInfo {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+
+.hgnInfo {
+  display: flex;
+  justify-content: space-between;
+}
+
+.inputGhnCode {
+  margin: 0px 10px;
+  padding: 5px;
+  border: 1px solid lightgray;
+  border-radius: 5px;
+}
+
+.btnUpdateGhnCode {
+  margin: 0px 10px;
+  padding: 5px;
+  border: none;
+  border-radius: 5px;
+  background-color: black;
+  color: white;
+  font-size: 15px;
+  font-weight: 500;
+}
+
+.markShipped {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.markShipped.disable {
+  display: none;
+}
+
+.isDelivered {
+  margin-left: 10px;
+}
+
+.isDelivered.disable {
+  font-style: italic;
+  text-decoration: line-through;
+  color: lightgray;
+}
+
+.orderDetail {
+  flex: 1;
+  height: fit-content;
+  margin: 0px 10px;
   -webkit-box-shadow: 0px 0px 15px -10px rgba(0, 0, 0, 0.75);
   box-shadow: 0px 0px 15px -10px rgba(0, 0, 0, 0.75);
   display: flex;
 }
 
-.processingAndStatus {
-  height: 200px;
+.orderBill {
   flex: 1;
-  border: 1px dashed lightgray;
-  margin: 0px 10px;
+  width: 100%;
+  height: fit-content;
+  padding: 10px;
 }
 
-.orderDetail {
-  height: 200px;
+.orderBillTitle {
+  font-weight: bold;
+  text-align: center;
+}
+
+.orderBillListItem {
+  margin-top: 20px;
+  border-right: 1px solid lightgray;
+}
+
+.orderBillItem {
+  display: flex;
+  margin-top: 10px;
+  padding-bottom: 10px;
+}
+
+.orderBillItemImageProduct {
+  width: 90px;
+  height: 90px;
+}
+
+.orderBillItemItemDetail {
+  padding: 0px 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.orderSummary {
   flex: 1;
-  border: 1px dashed lightgray;
-  margin: 0px 10px;
+  width: 100%;
+  height: fit-content;
+  padding: 10px;
+}
+
+.orderSummaryTitle {
+  font-weight: bold;
+  text-align: center;
+}
+
+.orderSummaryItem {
+  margin: 20px 30px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.orderSummaryItem.total {
+  font-weight: 500;
+  font-size: 24px;
 }

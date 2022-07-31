@@ -102,35 +102,43 @@ export default function TransactionList() {
       headerName: 'Status',
       width: 150,
       renderCell: (params) => {
-        if (params.row.status === 'PROCESSING')
+        if (!params.row.stripeSucceededPaymentIntentId) {
           return (
             <div>
-              <span className="transactionStatus processing">
-                <Brightness5 className="transactionStatusIcon" />
-                PROCESSING
-              </span>
+              <span className="transactionStatus">PENDING...</span>
             </div>
           );
+        } else {
+          if (params.row.status === 'PROCESSING')
+            return (
+              <div>
+                <span className="transactionStatus processing">
+                  <Brightness5 className="transactionStatusIcon" />
+                  PROCESSING
+                </span>
+              </div>
+            );
 
-        if (params.row.status === 'PREPARING_SHIPMENT')
-          return (
-            <div>
-              <span className="transactionStatus preparing_shipment">
-                <Archive className="transactionStatusIcon" />
-                PREPARING
-              </span>
-            </div>
-          );
+          if (params.row.status === 'PREPARING_SHIPMENT')
+            return (
+              <div>
+                <span className="transactionStatus preparing_shipment">
+                  <Archive className="transactionStatusIcon" />
+                  PREPARING
+                </span>
+              </div>
+            );
 
-        if (params.row.status === 'DELIVERED')
-          return (
-            <div>
-              <span className="transactionStatus delivered">
-                <LocalShipping className="transactionStatusIcon" />
-                DELIVERED
-              </span>
-            </div>
-          );
+          if (params.row.status === 'DELIVERED')
+            return (
+              <div>
+                <span className="transactionStatus delivered">
+                  <LocalShipping className="transactionStatusIcon" />
+                  DELIVERED
+                </span>
+              </div>
+            );
+        }
       },
     },
 
@@ -140,7 +148,7 @@ export default function TransactionList() {
       width: 150,
       renderCell: (params) => {
         return params.row.stripeSucceededPaymentIntentId ? (
-          <Link to={'/transaction/' + params.row.id}>
+          <Link to={'/transaction/' + params.row.orderCode}>
             <button className="widgetLgDetailBtn active">
               <Visibility />
             </button>

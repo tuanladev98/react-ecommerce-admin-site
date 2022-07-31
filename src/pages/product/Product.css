@@ -38,6 +38,39 @@
   box-shadow: 0px 0px 15px -10px rgba(0, 0, 0, 0.75);
 }
 
+.listReviewsEmpty {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.listReviews {
+  margin-top: 20px;
+}
+
+.review {
+  padding: 10px;
+  border-bottom: 1px dashed lightgray;
+}
+
+.reviewTitle {
+  font-weight: 700;
+  font-size: 18px;
+}
+
+.reviewComment {
+  margin-top: 10px;
+}
+
+.reviewDate {
+  margin-top: 10px;
+  font-weight: 200;
+  font-style: italic;
+  font-size: 14px;
+}
+
+/* 
 .productInfoImg {
   width: 40px;
   height: 40px;
@@ -67,7 +100,7 @@
 
 .productInfoValue {
   font-weight: 300;
-}
+} */
 
 .productBottom {
   padding: 20px;

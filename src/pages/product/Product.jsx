@@ -67,7 +67,7 @@ export default function Product() {
       .then((result) => {
         const data = result.data.map((ele) => {
           return {
-            name: dayjs().year(ele.year).month(ele.month).format('MMM YYYY'),
+            name: dayjs(`${ele.year}-${ele.month}-1`).format('MMM YYYY'),
             // name: `${ele.month}`,
             Sales: !ele.quantity ? 0 : ele.quantity,
           };

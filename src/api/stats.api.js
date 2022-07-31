@@ -31,6 +31,22 @@ const statsApis = {
     );
     return result;
   },
+
+  getStatsTotalByUnits: () => {
+    return createPrivateRequest().get('/stats/total-by-units');
+  },
+
+  getStatsSalesPerformanceByCategory: () => {
+    return createPrivateRequest().get('/stats/sales-performance-by-cat');
+  },
+
+  getStatsTransactionsLastSixMonth: () => {
+    return createPrivateRequest().get('/stats/transactions-latest-six-month');
+  },
+
+  getStatsIncomeLastSixMonth: () => {
+    return createPrivateRequest().get('/stats/income-latest-six-month');
+  },
 };
 
 export default statsApis;

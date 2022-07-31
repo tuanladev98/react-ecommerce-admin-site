@@ -16,7 +16,7 @@ export default function Chart({ title, data, dataKey, grid }) {
       <h3 className="chartTitle">{title}</h3>
       <ResponsiveContainer width="100%" aspect={4 / 1}>
         <LineChart data={data}>
-          <XAxis dataKey="name" />
+          <XAxis dataKey="name" padding={{ left: 30, right: 30 }} />
           <YAxis />
           <Line type="monotone" dataKey={dataKey} stroke="#5550bd" />
           <Tooltip />

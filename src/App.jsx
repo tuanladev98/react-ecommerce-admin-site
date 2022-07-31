@@ -20,6 +20,7 @@ import Login from './pages/login/Login';
 import ChatBox from './pages/chat-box/ChatBox';
 import TransactionList from './pages/transaction-list/TransactionList';
 import Transaction from './pages/transaction/Transaction';
+import Report from './pages/report/Report';
 
 import { socket, SocketContext } from './socket/socketContext';
 
@@ -72,6 +73,9 @@ function App() {
               </Route>
               <Route path="/transaction/:orderCode">
                 <Transaction />
+              </Route>
+              <Route path="/report">
+                <Report />
               </Route>
             </div>
           </SocketContext.Provider>

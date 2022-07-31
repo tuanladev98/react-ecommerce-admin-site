@@ -33,7 +33,7 @@ export default function SideBar() {
                 }`}
               >
                 <HomeOutlined className="sidebarIcon" />
-                Home
+                Dashboard
               </li>
             </Link>
             <Link to="/support-user" className="link">
@@ -81,14 +81,16 @@ export default function SideBar() {
                 Transactions
               </li>
             </Link>
-            <li
-              className={`sidebarListItem ${
-                activeMenu === 'REPORT' ? 'active' : ''
-              }`}
-            >
-              <BarChart className="sidebarIcon" />
-              Reports
-            </li>
+            <Link to="/report" className="link">
+              <li
+                className={`sidebarListItem ${
+                  activeMenu === 'REPORT' ? 'active' : ''
+                }`}
+              >
+                <BarChart className="sidebarIcon" />
+                Reports
+              </li>
+            </Link>
           </ul>
         </div>
       </div>
